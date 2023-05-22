@@ -6,5 +6,6 @@ while true; do
         \( -fill "#d5c4a1" -pointsize 30 -font Iosevka -background none -gravity northwest -page 1000x1500 "text:$BRAIN_DIR/todo.txt" -gravity northwest -geometry +180+10 \) \
         -composite ~/Pictures/wallpaper.png
     swww img -t none ~/Pictures/wallpaper.png
-    echo "$BRAIN_DIR/todo.txt" | entr -zp true
+    echo "$BRAIN_DIR/todo.txt" | entr -p true
+    sleep 5
 done

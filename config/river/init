@@ -7,7 +7,7 @@ change-keyboard $(head -n1 ~/.config/keyboards)
 # In case stuff breaks
 riverctl map normal Super Delete keyboard-layout us
 
-killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar" "walld"
+killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar"
 
 # Terminal
 foot --server &
@@ -97,7 +97,7 @@ rivertile -view-padding 6 -outer-padding 6 &
 
 # Daemons
 swww-daemon &
-walld &
+swww img ~/Pictures/wallpaper.png
 pipewire &
 pipewire-pulse &
 yambar &
