@@ -1,0 +1,9 @@
+shell = "bash -c '{}'"
+
+[[items]]
+file = "~/.config/foot/foot.ini"
+template = "foot"
+
+[[items]]
+file = "~/.config/kak/kakrc"
+template = "kakoune"
