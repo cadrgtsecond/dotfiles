@@ -15,9 +15,6 @@ bar:
                 string:
                   text: ""
               conditions:
-                state == charging:
-                  string:
-                    text: "Charging"
                 capacity < 10:
                   string:
                     text: ""
