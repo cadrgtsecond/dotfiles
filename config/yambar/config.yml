@@ -1,0 +1,43 @@
+bar:
+  height: 26
+  location: top
+  background: 000000ff
+  font: Iosevka Term:size=15
+  left-margin: 10
+  right-margin: 10
+
+  left:
+    - battery:
+        name: "BAT0"
+        content:
+          - map:
+              default:
+                string:
+                  text: ""
+              conditions:
+                state == charging:
+                  string:
+                    text: "Charging"
+                capacity < 10:
+                  string:
+                    text: ""
+                capacity < 35:
+                  string:
+                    text: ""
+                capacity < 65:
+                  string:
+                    text: ""
+                capacity < 85:
+                  string:
+                    text: ""
+
+          - string: {text: " {capacity}% {state} {estimate} left |", right-margin: 10}
+    - pipewire:
+        content:
+          # TODO: Change icon based on percentage
+          - string: {text: " {linear_volume}%", right-margin: 10}
+  center:
+    - clock:
+        time-format: "%Y-%m-%d %H:%M:%S"
+        content:
+          - string: {text: "{time}"}
