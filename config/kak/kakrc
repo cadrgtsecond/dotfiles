@@ -3,25 +3,25 @@ eval %sh{ kak-lsp }
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
 ## by Leira Hua
-## Generated scheme by Flavours
+## Zenburn scheme by elnawe
 
 evaluate-commands %sh{
-    base00='rgb:2e241e'
-    base01='rgb:524843'
-    base02='rgb:756c67'
-    base03='rgb:99908b'
-    base04='rgb:bcb4af'
-    base05='rgb:dfd8d3'
-    base06='rgb:e4deda'
-    base07='rgb:e9e4e0'
-    base08='rgb:617d83'
-    base09='rgb:6f75a4'
-    base0A='rgb:c0bebb'
-    base0B='rgb:ddc1a8'
-    base0C='rgb:c9ad9f'
-    base0D='rgb:a7adb1'
-    base0E='rgb:fbf8f4'
-    base0F='rgb:c5a784'
+    base00='rgb:383838'
+    base01='rgb:404040'
+    base02='rgb:606060'
+    base03='rgb:6f6f6f'
+    base04='rgb:808080'
+    base05='rgb:dcdccc'
+    base06='rgb:c0c0c0'
+    base07='rgb:ffffff'
+    base08='rgb:dca3a3'
+    base09='rgb:dfaf8f'
+    base0A='rgb:e0cf9f'
+    base0B='rgb:5f7f5f'
+    base0C='rgb:93e0e3'
+    base0D='rgb:7cb8bb'
+    base0E='rgb:dc8cc3'
+    base0F='rgb:000000'
 
     ## code
     echo "
