@@ -10,6 +10,10 @@
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
+# Set the keyboard layout
+riverctl keyboard-layout -options grp:shifts_toggle,grp:switch -variant ,dvorak,, us,us,apl,bqn
+
+# Terminal
 riverctl map normal Super+Shift Return spawn foot
 riverctl map normal Super W close
 
@@ -94,7 +98,8 @@ all_tags=$(((1 << 32) - 1))
 riverctl map normal Super  set-focused-tags $all_tags
 riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
-# Super+Space to toggle float
+# Super+T to toggle float
+riverctl map normal Super T toggle-float
 riverctl map normal Super Space spawn "wmenu-run"
 
 # Super+F to toggle fullscreen
