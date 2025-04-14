@@ -166,6 +166,4 @@ rivertile -view-padding 6 -outer-padding 6 &
 swww-daemon &
 pipewire &
 pipewire-pulse &
-
-sleep 1
 yambar &

@@ -1,5 +1,23 @@
 eval %sh{ kak-lsp }
 
+# Disable elixir automatic "end"
+hook global WinSetOption filetype=elixir %{
+    remove-hooks window elixir-insert
+}
+
+hook global WinCreate .* %{
+   set global indentwidth 4
+   map window insert <tab> <space><space><space><space>
+}
+# Fix makefiles
+hook global WinSetOption filetype=makefile %{
+    unmap window insert <tab>
+}
+hook global WinSetOption filetype=(lisp|haskell) %{
+   set global indentwidth 2
+   map window insert <tab> <space><space>
+}
+
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
 ## by Leira Hua
