@@ -16,3 +16,5 @@ function lcd() {
 	builtin cd $@
 }
 cd $(cat /dev/shm/pwd)
+
+source /home/god/.config/broot/launcher/bash/br
