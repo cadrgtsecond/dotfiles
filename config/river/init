@@ -1,17 +1,7 @@
 #!/bin/sh
 
-# This is the example configuration file for river.
-#
-# If you wish to edit this, you will probably want to copy it to
-# $XDG_CONFIG_HOME/river/init or $HOME/.config/river/init first.
-#
-# See the river(1), riverctl(1), and rivertile(1) man pages for complete
-# documentation.
-
-# Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
-
 # Set the keyboard layout
-riverctl keyboard-layout -options grp:shifts_toggle,grp:switch -variant ,dvorak,, us,us,bqn,apl
+riverctl keyboard-layout -options grp:shifts_toggle,grp:switch -variant ,colemak_dh,dvorak,, us,us,us,bqn,apl
 
 # Terminal
 riverctl map normal Super+Shift Return spawn foot
@@ -151,6 +141,7 @@ riverctl border-color-unfocused 0x586e75
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
+riverctl focus-follows-cursor always
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 riverctl rule-add -app-id 'float*' -title 'foo' float
