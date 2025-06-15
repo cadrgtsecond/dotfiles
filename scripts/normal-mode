@@ -1,0 +1,6 @@
+#!/usr/bin/env -S enter-mode "Normal:"
+reload	~/.config/river/init
+e	bash -c "$(tofi-run)"
+o	open-mode
+s	script-mode
+t	tile-mode

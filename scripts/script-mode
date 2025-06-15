@@ -1,0 +1,2 @@
+#!/usr/bin/env -S enter-mode "Scripts:"
+s	grim -g "$(slurp)" > $(fd -t d | tofi --prompt-text="Choose a file:")

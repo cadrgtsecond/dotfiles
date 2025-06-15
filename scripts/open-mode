@@ -1,0 +1,5 @@
+#!/usr/bin/env -S enter-mode "Open:"
+f	firefox-wayland &
+t	foot &
+b	footclient bash -c "br" &
+u	firefox-wayland -P "Abhinav Krishna" &
