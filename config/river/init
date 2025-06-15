@@ -90,7 +90,7 @@ riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
 # Super+T to toggle float
 riverctl map normal Super T toggle-float
-riverctl map normal Super Space spawn "wmenu-run"
+riverctl map normal Super Space spawn 'bash -c "$(tofi-run)"'
 
 # Super+F to toggle fullscreen
 riverctl map normal Super F toggle-fullscreen

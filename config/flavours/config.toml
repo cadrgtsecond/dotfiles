@@ -7,3 +7,7 @@ template = "foot"
 [[items]]
 file = "~/.config/kak/kakrc"
 template = "kakoune"
+
+[[items]]
+file = "~/.config/tofi/config"
+template = "tofi"
