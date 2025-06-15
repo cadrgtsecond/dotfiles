@@ -1,5 +1,6 @@
 #!/usr/bin/env -S enter-mode "Normal:"
 reload	~/.config/river/init
+x	riverctl exit
 e	bash -c "$(tofi-run)"
 o	open-mode
 s	script-mode

@@ -1,2 +1,2 @@
 #!/usr/bin/env -S enter-mode "Scripts:"
-s	grim -g "$(slurp)" > $(fd -t d | tofi --prompt-text="Choose a file:")
+s	test = grim -g "$(slurp)" "$(fd -t d | tofi --matching-algorithm=fuzzy --prompt-text="Choose a file:" --require-match=false)"
