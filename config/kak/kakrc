@@ -5,14 +5,8 @@ hook global WinSetOption filetype=elixir %{
     remove-hooks window elixir-insert
 }
 
-hook global WinCreate .* %{
-    set window indentwidth 4
-    map window insert <tab> <space><space><space><space>
-}
-# Fix makefiles
-hook global WinSetOption filetype=makefile %{
-    unmap window insert <tab>
-}
+set global indentwidth 4
+
 hook global WinSetOption filetype=(lisp|haskell) %{
     set window indentwidth 2
     map window insert <tab> <space><space>
@@ -20,8 +14,6 @@ hook global WinSetOption filetype=(lisp|haskell) %{
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     parinfer-enable-window -smart
 }
-
-# Enable parinfer for lisp languages
 
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
