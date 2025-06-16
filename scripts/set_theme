@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Start flavours
+printf '
+\e]11;rgb:38/38/38\a
+\e]10;rgb:dc/dc/cc\a
+\e]4;0;rgb:38/38/38\a
+\e]4;1;rgb:dc/a3/a3\a
+\e]4;2;rgb:5f/7f/5f\a
+\e]4;3;rgb:e0/cf/9f\a
+\e]4;4;rgb:7c/b8/bb\a
+\e]4;5;rgb:dc/8c/c3\a
+\e]4;6;rgb:93/e0/e3\a
+\e]4;7;rgb:dc/dc/cc\a
+
+\e]4;8;rgb:6f/6f/6f\a
+\e]4;9;rgb:df/af/8f\a
+\e]4;10;rgb:40/40/40\a
+\e]4;11;rgb:60/60/60\a
+\e]4;12;rgb:80/80/80\a
+\e]4;13;rgb:c0/c0/c0\a
+\e]4;14;rgb:00/00/00\a
+\e]4;15;rgb:ff/ff/ff\a
+' | tr -d '\n '
+# End flavours
+
+sleep infinity & PID=$!
+trap "kill $PID" USR1
+
+wait
+exec set_theme

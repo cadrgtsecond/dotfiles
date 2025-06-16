@@ -1,2 +1,3 @@
 #!/usr/bin/env -S enter-mode "Scripts:"
 s	test = grim -g "$(slurp)" "$(fd -t d | tofi --matching-algorithm=fuzzy --prompt-text="Choose a file:" --require-match=false)"
+t	quick bash -c "(set_theme &); flavours list | tr ' ' '\n' | fzf --preview 'flavours apply {}'"

@@ -7,7 +7,7 @@ file=$2
 shift 2
 
 while true; do
-  result=$(printf "$(cat $file)\n?	quickedit $file" |
+  result=$(printf "%s\n%s" "$(cat $file)" "?	quick kak $file" |
            grep -v "^#" |
            tofi --prompt-text=$name$(printf '\n') --include=$HOME/.config/tofi/modemenu $@ |
            cut -f 2)

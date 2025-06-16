@@ -18,7 +18,7 @@ define-command -override -docstring "parinfer: reformat buffer with parinfer-rus
 parinfer %{
     evaluate-commands -draft -save-regs '/"|^@' -no-hooks %{
         set-option window parinfer_selection_desc %val{selections_desc}
-        execute-keys '%|parinfer-rust<ret>'
+        try %{ execute-keys '%|parinfer-rust<ret>' }
     }
     select %opt{parinfer_selection_desc}
 }

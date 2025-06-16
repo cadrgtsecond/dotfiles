@@ -1,3 +1,0 @@
-#!/bin/bash
-
-footclient -a quickedit kak $1
