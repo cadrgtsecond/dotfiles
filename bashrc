@@ -23,3 +23,5 @@ then
     unset START_COMMAND
     eval "$start_command"
 fi
+
+eval "$(zoxide init bash)"
