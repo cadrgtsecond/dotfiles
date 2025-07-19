@@ -1,0 +1,17 @@
+#!/bin/sh
+# Script that accepts a reddit link as $1. Renders a readable version of it, with sixel image preview
+
+clear -x
+content=$(curl -A firefox "$1")
+clear -x
+post=$(printf '%s' "$content" | xq-go -n -q "shreddit-post")
+image=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a content-href)
+title=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a post-title)
+votes=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a score)
+comments=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a comment-count)
+author=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a author)
+
+printf '# %s\n' "$title"
+printf '%s Upvotes, %s Comments, by %s\n' "$votes" "$comments" "$author"
+curl -A firefox -s "$image" | img2sixel -w 500
+sleep infinity
