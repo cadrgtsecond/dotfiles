@@ -25,3 +25,6 @@ then
 fi
 
 eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
+. "$HOME/.cargo/env"
+
