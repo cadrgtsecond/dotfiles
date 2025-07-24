@@ -18,23 +18,3 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     parinfer-enable-window -smart
 }
 
-define-command -hidden set_visual_movement_keys %{
-    execute-keys "x"
-    map -docstring "Move down by a visual line" \
-        window goto "j" \
-        "<esc>%sh{echo $(( $kak_selection_length < $kak_window_width ? $kak_selection_length : $kak_window_width))}l"
-
-    map -docstring "Move down by a visual line" \
-        window goto "k" \
-        "<esc>%sh{echo $(( $kak_selection_length < $kak_window_width ? $kak_selection_length : $kak_window_width))}h"
-}
-
-hook global WinSetOption filetype=(markdown) %{
-    addhl window/ wrap
-    hook window WinResize .* %{
-        set_visual_movement_keys
-    }
-    hook window NormalKey .* %{
-        evaluate-commands -draft %{ set_visual_movement_keys }
-    }
-}

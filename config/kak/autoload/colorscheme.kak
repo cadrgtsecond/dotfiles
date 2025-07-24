@@ -1,25 +1,25 @@
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
 ## by Leira Hua
-## Zenburn scheme by elnawe
+## Dracula scheme by Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
 
 evaluate-commands %sh{
-    base00='rgb:383838'
-    base01='rgb:404040'
-    base02='rgb:606060'
-    base03='rgb:6f6f6f'
-    base04='rgb:808080'
-    base05='rgb:dcdccc'
-    base06='rgb:c0c0c0'
-    base07='rgb:ffffff'
-    base08='rgb:dca3a3'
-    base09='rgb:dfaf8f'
-    base0A='rgb:e0cf9f'
-    base0B='rgb:5f7f5f'
-    base0C='rgb:93e0e3'
-    base0D='rgb:7cb8bb'
-    base0E='rgb:dc8cc3'
-    base0F='rgb:000000'
+    base00='rgb:282936'
+    base01='rgb:3a3c4e'
+    base02='rgb:4d4f68'
+    base03='rgb:626483'
+    base04='rgb:62d6e8'
+    base05='rgb:e9e9f4'
+    base06='rgb:f1f2f8'
+    base07='rgb:f7f7fb'
+    base08='rgb:ea51b2'
+    base09='rgb:b45bcf'
+    base0A='rgb:00f769'
+    base0B='rgb:ebff87'
+    base0C='rgb:a1efe4'
+    base0D='rgb:62d6e8'
+    base0E='rgb:b45bcf'
+    base0F='rgb:00f769'
 
     ## code
     echo "
