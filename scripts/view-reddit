@@ -1,10 +1,9 @@
 #!/bin/sh
 # Script that accepts a reddit link as $1. Renders a readable version of it, with sixel image preview
 
-clear -x
+clear
 content=$(curl -A firefox "$1")
-clear -x
-post=$(printf '%s' "$content" | xq-go -n -q "shreddit-post")
+clear
 image=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a content-href)
 title=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a post-title)
 votes=$(printf '%s' "$content" | xq-go -q 'shreddit-post' -a score)
