@@ -6,7 +6,7 @@ mkfifo $dir/stdin
 mkfifo $dir/stdout
 mkfifo $dir/stderr
 
-footclient -a quickpipe bash -c "(set_theme &) && $* < $dir/stdin > $dir/stdout 2> $dir/stderr" &
+footclient -a quickpipe bash -c "(set_theme &) && < $dir/stdin > $dir/stdout 2> $dir/stderr $*" &
 cat > $dir/stdin
 cat $dir/stdout </dev/null &
 cat $dir/stderr 1>&2 </dev/null &
