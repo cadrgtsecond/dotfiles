@@ -1,0 +1,11 @@
+#!/bin/sh
+
+dir=$(mktemp -d)
+
+mkfifo $dir/stdin
+
+footclient -a quickpipe bash -c "(set_theme &) && < $dir/stdin $*" &
+cat > $dir/stdin
+wait
+
+rm -rf $dir
