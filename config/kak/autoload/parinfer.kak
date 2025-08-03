@@ -1,8 +1,10 @@
 declare-option str parinfer_mode "indent"
-declare-option -hidden -docstring "Timestamp of the last check" int parinfer_last_checked
+declare-option -hidden -docstring "Timestamp of the last check" int \
+    parinfer_last_checked
 
 define-command -docstring "parinfer-enable-window: enable Parinfer for current window" \
 parinfer-enable-window -params ..1 %{
+    set-option window parinfer_last_checked %val{timestamp}
     hook -group parinfer window NormalIdle .* %{
         evaluate-commands %sh{
             [ "$kak_opt_parinfer_last_checked" -ne "$kak_timestamp" ] && printf 'parinfer'
@@ -24,7 +26,7 @@ parinfer-toggle-mode %{
         [ "$kak_opt_parinfer_mode" = 'indent' ] && printf 'paren' || printf 'indent'
     }
 }
-define-command -override -docstring "parinfer: reformat buffer with parinfer-rust." \
+define-command -docstring "parinfer: reformat buffer with parinfer-rust." \
 parinfer %{
     evaluate-commands -save-regs '/"|^@sa' -no-hooks %{
         set-register s %val{selections_desc}

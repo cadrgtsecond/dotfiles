@@ -2,10 +2,6 @@ hook global WinSetOption filetype=(markdown) %{
     require-module markdown-custom
     addhl window/ wrap
 
-    hook window WinResize .* %{
-        set_visual_movement_keys
-    }
-
     map window normal "<ret>" ": try markdown-open-link<ret>"
 }
 
