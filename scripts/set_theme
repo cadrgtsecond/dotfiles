@@ -1,26 +1,26 @@
-#!/bin/bash
+#!/bin/sh
 
 # Start flavours
 printf '
-\e]11;rgb:28/29/36\a
-\e]10;rgb:e9/e9/f4\a
-\e]4;0;rgb:28/29/36\a
-\e]4;1;rgb:ea/51/b2\a
-\e]4;2;rgb:eb/ff/87\a
-\e]4;3;rgb:00/f7/69\a
-\e]4;4;rgb:62/d6/e8\a
-\e]4;5;rgb:b4/5b/cf\a
-\e]4;6;rgb:a1/ef/e4\a
-\e]4;7;rgb:e9/e9/f4\a
+\033]11;rgb:28/29/36\a
+\033]10;rgb:e9/e9/f4\a
+\033]4;0;rgb:28/29/36\a
+\033]4;1;rgb:ea/51/b2\a
+\033]4;2;rgb:eb/ff/87\a
+\033]4;3;rgb:00/f7/69\a
+\033]4;4;rgb:62/d6/e8\a
+\033]4;5;rgb:b4/5b/cf\a
+\033]4;6;rgb:a1/ef/e4\a
+\033]4;7;rgb:e9/e9/f4\a
 
-\e]4;8;rgb:62/64/83\a
-\e]4;9;rgb:b4/5b/cf\a
-\e]4;10;rgb:3a/3c/4e\a
-\e]4;11;rgb:4d/4f/68\a
-\e]4;12;rgb:62/d6/e8\a
-\e]4;13;rgb:f1/f2/f8\a
-\e]4;14;rgb:00/f7/69\a
-\e]4;15;rgb:f7/f7/fb\a
+\033]4;8;rgb:62/64/83\a
+\033]4;9;rgb:b4/5b/cf\a
+\033]4;10;rgb:3a/3c/4e\a
+\033]4;11;rgb:4d/4f/68\a
+\033]4;12;rgb:62/d6/e8\a
+\033]4;13;rgb:f1/f2/f8\a
+\033]4;14;rgb:00/f7/69\a
+\033]4;15;rgb:f7/f7/fb\a
 ' | tr -d '\n '
 # End flavours
 
