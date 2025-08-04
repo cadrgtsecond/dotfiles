@@ -3,7 +3,7 @@
 # Set the keyboard layout
 riverctl keyboard-layout -options grp:shifts_toggle,grp:switch -variant ,colemak_dh,dvorak,, us,us,us,bqn,apl
 
-killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar"
+killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar" "walld"
 
 # Terminal
 foot --server &
@@ -40,11 +40,7 @@ riverctl map normal Super K send-layout-cmd rivertile "main-ratio +0.05"
 
 # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_LEFT move-view
-
-# Super + Right Mouse Button to resize views
 riverctl map-pointer normal Super BTN_RIGHT resize-view
-
-# Super + Middle Mouse Button to toggle float
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 for i in $(seq 1 9)
@@ -129,6 +125,7 @@ riverctl default-layout rivertile
 rivertile -view-padding 6 -outer-padding 6 &
 
 swww-daemon &
+walld &
 pipewire &
 pipewire-pulse &
 yambar &
