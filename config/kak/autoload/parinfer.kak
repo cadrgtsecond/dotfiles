@@ -3,7 +3,7 @@ declare-option -hidden -docstring "Timestamp of the last check" int \
     parinfer_last_checked
 
 define-command -docstring "parinfer-enable-window: enable Parinfer for current window" \
-parinfer-enable-window -params ..1 %{
+parinfer-enable-window %{
     set-option window parinfer_last_checked %val{timestamp}
     hook -group parinfer window NormalIdle .* %{
         evaluate-commands %sh{
@@ -11,7 +11,6 @@ parinfer-enable-window -params ..1 %{
         }
         set-option current parinfer_last_checked %val{timestamp}
     }
-    map -docstring "Toggle parinfer mode" window user "p" ": parinfer-toggle-mode<ret>"
 }
 
 define-command -docstring "parinfer-disable-window: disable Parinfer for current window." \
