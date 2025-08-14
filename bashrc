@@ -15,8 +15,6 @@ function lcd() {
 }
 cd $(cat /dev/shm/pwd)
 
-source /home/god/.config/broot/launcher/bash/br
-
 if [ -n "$START_COMMAND" ]
 then
     start_command=$START_COMMAND
