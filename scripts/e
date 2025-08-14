@@ -1,7 +1,7 @@
 #!/bin/sh
 # A script, that roughly acts like a Kakoune session manager
 
-session=$(kak -l | head -n1)
+session=$(kak -l | sort -r | head -n1)
 if [ -n "$session" ]
 then
     exec kak -c "$session" "$@"

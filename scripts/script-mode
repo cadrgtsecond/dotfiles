@@ -2,3 +2,5 @@
 s	test = grim -g "$(slurp)" "$(fd -t d | tofi --matching-algorithm=fuzzy --prompt-text="Choose a file:" --require-match=false)"
 e	cat ~/.local/bin/scripts/unicode_list.csv | tofi | cut -d, -f1 | wl-copy -n
 t	flavours list | tr ' ' '\n' | quickpipe "fzf --preview 'flavours apply {}'"
+kk	kak -l | xargs -I{} kak -c {} -e kill!
+ks	printf 'kill!' | kak -p "$(kak -l | fuzzel -dp "kill:")"
