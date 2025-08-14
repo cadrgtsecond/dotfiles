@@ -1,12 +1,13 @@
 border-width = 1
 font-size = 14
 outline-width = 0
+width = 30%
 
 # Start flavours
-background-color = #404040
-outline-color = #383838
-text-color = #dcdccc
-border-color = #dca3a3
-selection-color = #c0c0c0
-selection-background = #606060
+background-color = #f7f3f7
+outline-color = #f7f3f7
+text-color = #695d69
+border-color = #9e8f9e
+selection-color = #695d69
+selection-background = #ab9bab
 # End flavours

@@ -1,25 +1,25 @@
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
 ## by Leira Hua
-## Dracula scheme by Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
+## Atelier Heath Light scheme by Bram de Haan (http://atelierbramdehaan.nl)
 
 evaluate-commands %sh{
-    base00='rgb:282936'
-    base01='rgb:3a3c4e'
-    base02='rgb:4d4f68'
-    base03='rgb:626483'
-    base04='rgb:62d6e8'
-    base05='rgb:e9e9f4'
-    base06='rgb:f1f2f8'
-    base07='rgb:f7f7fb'
-    base08='rgb:ea51b2'
-    base09='rgb:b45bcf'
-    base0A='rgb:00f769'
-    base0B='rgb:ebff87'
-    base0C='rgb:a1efe4'
-    base0D='rgb:62d6e8'
-    base0E='rgb:b45bcf'
-    base0F='rgb:00f769'
+    base00='rgb:f7f3f7'
+    base01='rgb:d8cad8'
+    base02='rgb:ab9bab'
+    base03='rgb:9e8f9e'
+    base04='rgb:776977'
+    base05='rgb:695d69'
+    base06='rgb:292329'
+    base07='rgb:1b181b'
+    base08='rgb:ca402b'
+    base09='rgb:a65926'
+    base0A='rgb:bb8a35'
+    base0B='rgb:918b3b'
+    base0C='rgb:159393'
+    base0D='rgb:516aec'
+    base0E='rgb:7b59c0'
+    base0F='rgb:cc33cc'
 
     ## code
     echo "

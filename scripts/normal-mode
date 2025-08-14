@@ -5,4 +5,4 @@ e	bash -c "$(tofi-run)"
 o	open-mode
 s	script-mode
 t	tile-mode
-k	footclient bash -c 'START_COMMAND="kak -c \$(list-kak | fuzzel -d)" exec bash'
+k	footclient bash -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
