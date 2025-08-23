@@ -1,3 +1,3 @@
 #!/bin/sh
 
-footclient -a quick "$@"
+footclient -a quick sh -c '( set_theme & ); "$@"' quick "$@"

@@ -2,14 +2,14 @@
 
 dir=$(mktemp -d)
 
-mkfifo $dir/stdin
-mkfifo $dir/stdout
-mkfifo $dir/stderr
+mkfifo "$dir/stdin"
+mkfifo "$dir/stdout"
+mkfifo "$dir/stderr"
 
-footclient -a quickpipe bash -c "(set_theme &) && < $dir/stdin > $dir/stdout 2> $dir/stderr $*" &
-cat > $dir/stdin
-cat $dir/stdout </dev/null &
-cat $dir/stderr 1>&2 </dev/null &
+footclient -a quickpipe sh -c "(set_theme &); < $dir/stdin > $dir/stdout 2> $dir/stderr \"\$@\"" quick "$@" &
+cat "$dir/stdout" </dev/null &
+cat "$dir/stderr" 1>&2 </dev/null &
+cat > "$dir/stdin"
 wait
 
-rm -rf $dir
+rm -rf "$dir"
