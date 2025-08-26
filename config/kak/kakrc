@@ -1,5 +1,19 @@
-hook global WinSetOption filetype=(rust) %{
-  eval %sh{ kak-lsp }
+hook global WinSetOption filetype=(rust|zig) %{
+    eval %sh{ kak-lsp }
+    set-option window lsp_language_id %opt{filetype}
+
+    map -docstring "Enter LSP Mode" window user <space> ": enter-user-mode lsp<ret>"
+}
+hook global WinSetOption filetype=zig %{
+    set-option window lsp_servers %{
+        [zls]
+        root_globs = ["build.zig"]
+        settings_section = "zls"
+        [zls.settings.zls]
+        enable_snippets = false
+        enable_argument_placeholders = false
+    }
+    lsp-enable
 }
 
 set-option global indentwidth 4
@@ -10,7 +24,7 @@ try-daemonize %{
 }
 map -docstring "Rename session" global user z ': prompt "Session Name:" %{ try-daemonize %val{text} } <ret>'
 
-hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell) %{
+hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell|markdown|asciidoc) %{
     set window indentwidth 2
     map window insert <tab> <space><space>
 }
