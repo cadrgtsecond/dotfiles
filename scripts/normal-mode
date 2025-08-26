@@ -1,10 +1,10 @@
 #!/usr/bin/env -S enter-mode "Normal:"
 reload	~/.config/river/init
 x	riverctl exit
-e	bash -c "$(tofi-run)"
+e	sh -c "$(tofi-run)"
 o	open-mode
 s	script-mode
 t	tile-mode
-k	footclient bash -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
+k	footclient sh -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
 q	printf 'kill!' | kak -p "$(kak -l | tofi --prompt-text "kill:")"
 

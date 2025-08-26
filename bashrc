@@ -1,5 +1,6 @@
 #!/bin/bash
-HISTFILE="~/.cache/bash/history"
+# Actually not a big fan of shell history. Might revise in the future
+HISTFILE=""
 export PS1=" \e[36m\w\e[37;2m>\e[0m\n \e[32mλ \e[0m"
 
 set_theme &

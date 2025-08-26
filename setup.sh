@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # We need to use $PWD because symbolic links are glorified strings
 ln -sf "$PWD/scripts" ~/.local/bin/
