@@ -1,7 +1,11 @@
 #!/bin/sh
 
 # Set the keyboard layout
-riverctl keyboard-layout -options grp:shifts_toggle,grp:switch -variant ,colemak_dh,dvorak,, us,us,us,bqn,apl
+# We intend for field splitting to take place
+# shellcheck disable=SC2046
+change-keyboard $(head -n1 ~/.config/keyboards)
+# In case stuff breaks
+riverctl map normal Super Delete keyboard-layout us
 
 killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar" "walld"
 

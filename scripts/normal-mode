@@ -6,3 +6,5 @@ o	open-mode
 s	script-mode
 t	tile-mode
 k	footclient bash -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
+q	printf 'kill!' | kak -p "$(kak -l | tofi --prompt-text "kill:")"
+

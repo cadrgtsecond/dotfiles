@@ -1,0 +1,3 @@
+#!/bin/sh
+
+riverctl keyboard-layout -options grp:shifts_toggle,grp:switch "$@"
