@@ -6,14 +6,11 @@ set_theme &
 
 # Quick cd hack
 touch /dev/shm/pwd
-function cd () {
-	builtin cd $@
+function ccd () {
+	cd "$@"
 	pwd > /dev/shm/pwd
 }
-function lcd() {
-	builtin cd $@
-}
-cd $(cat /dev/shm/pwd)
+cd "$(cat /dev/shm/pwd)"
 
 if [ -n "$START_COMMAND" ]
 then

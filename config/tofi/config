@@ -4,10 +4,10 @@ outline-width = 0
 width = 30%
 
 # Start flavours
-background-color = #f7f3f7
-outline-color = #f7f3f7
-text-color = #695d69
-border-color = #9e8f9e
-selection-color = #695d69
-selection-background = #ab9bab
+background-color = #32302f
+outline-color = #32302f
+text-color = #d5c4a1
+border-color = #665c54
+selection-color = #d5c4a1
+selection-background = #504945
 # End flavours

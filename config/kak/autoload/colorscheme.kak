@@ -1,25 +1,25 @@
 # Start flavours
 ## base16-kakoune (https://github.com/leira/base16-kakoune)
 ## by Leira Hua
-## Atelier Heath Light scheme by Bram de Haan (http://atelierbramdehaan.nl)
+## Gruvbox dark, soft scheme by Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 
 evaluate-commands %sh{
-    base00='rgb:f7f3f7'
-    base01='rgb:d8cad8'
-    base02='rgb:ab9bab'
-    base03='rgb:9e8f9e'
-    base04='rgb:776977'
-    base05='rgb:695d69'
-    base06='rgb:292329'
-    base07='rgb:1b181b'
-    base08='rgb:ca402b'
-    base09='rgb:a65926'
-    base0A='rgb:bb8a35'
-    base0B='rgb:918b3b'
-    base0C='rgb:159393'
-    base0D='rgb:516aec'
-    base0E='rgb:7b59c0'
-    base0F='rgb:cc33cc'
+    base00='rgb:32302f'
+    base01='rgb:3c3836'
+    base02='rgb:504945'
+    base03='rgb:665c54'
+    base04='rgb:bdae93'
+    base05='rgb:d5c4a1'
+    base06='rgb:ebdbb2'
+    base07='rgb:fbf1c7'
+    base08='rgb:fb4934'
+    base09='rgb:fe8019'
+    base0A='rgb:fabd2f'
+    base0B='rgb:b8bb26'
+    base0C='rgb:8ec07c'
+    base0D='rgb:83a598'
+    base0E='rgb:d3869b'
+    base0F='rgb:d65d0e'
 
     ## code
     echo "
