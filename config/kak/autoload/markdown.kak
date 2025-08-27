@@ -1,11 +1,20 @@
 hook global WinSetOption filetype=(markdown) %{
     require-module markdown-custom
-    addhl window/ wrap
+    add-highlighter window/ wrap
 
     map window normal "<ret>" ": try markdown-open-link<ret>"
+    remove-hooks window markdown-insert
+    hook window InsertChar \n -group markdown-insert markdown-my-insert-on-new-line
 }
 
+
 provide-module markdown-custom %{
+    # I don't like having `-`s automatically inserted for lists, since
+    # I often use multi line list elements like an outliner
+    define-command -hidden markdown-my-insert-on-new-line %{
+        try %{ execute-keys -draft -itersel k x s ^\h*\K((>\h*)+)\h* <ret> y gh j P }
+    }
+
     define-command markdown-open-link %{
         execute-keys "<a-t>[t]"
         execute-keys -with-hooks %sh{
