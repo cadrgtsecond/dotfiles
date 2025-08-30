@@ -3,12 +3,32 @@ hook global WinSetOption filetype=(markdown) %{
     add-highlighter window/ wrap
 
     map window normal "<ret>" ": try markdown-open-link<ret>"
+
     remove-hooks window markdown-insert
     hook window InsertChar \n -group markdown-insert markdown-my-insert-on-new-line
+
+    hook -group markdown-completion window NormalIdle .* %{
+        evaluate-commands %sh{
+            printf 'set-option window markdown_headings '
+            rg -Ir '$1' '^# (.*)$' . | sed "s/'/''/g;"'s/|/\\|/g;'"s/.*/\0||\0/;s/^/'/;s/$/' /" | tr -d '\n'
+        }
+    }
+    hook -group markdown-completion window InsertKey .* %{
+        evaluate-commands -draft %{
+            try %{
+                execute-keys '<esc><a-t>['
+                execute-keys -draft 'hH<a-k>\[\[<ret>'
+                set-option window markdown_completions "%val{cursor_line}.%val{cursor_column}@%val{timestamp}" %opt{markdown_headings}
+            }
+        }
+    }
+    set-option window completers 'option=markdown_completions' %opt{completers}
 }
 
-
 provide-module markdown-custom %{
+    declare-option completions markdown_completions
+    declare-option str-list markdown_headings
+
     # I don't like having `-`s automatically inserted for lists, since
     # I often use multi line list elements like an outliner
     define-command -hidden markdown-my-insert-on-new-line %{
