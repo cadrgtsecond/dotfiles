@@ -17,26 +17,27 @@ provide-module markdown-custom %{
 
     define-command markdown-open-link %{
         execute-keys "<a-t>[t]"
-        execute-keys -with-hooks %sh{
+        execute-keys -save-regs 'a:' -with-hooks  %sh{
             if [ "$kak_selection" = " " ]
             then
-                echo "rX"
+                printf "rX"
             elif [ "$kak_selection" = "X" ]
             then
-                echo "r "
+                printf "r "
             else
-                # TODO: Move this into its own script
-            	file=$(rg -l "^# $kak_selection" < /dev/null)
+                file=$(rg -l "^# $kak_selection$" < /dev/null)
                 if [ -z "$file" ]
                 then
-                    echo "fail 'Link does not exist yet'"
+                    slug=$(printf '%s' "$kak_selection" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-' )
+                    printf '"ay: edit %s<ret>' "$HOME/Documents/notes/home/$slug.md"
+                    printf 'i# <c-r>a<esc>'
                 # TODO: Support resolving ambiguous links
-                elif [ $(echo "$file" | wc -l) -ne 1 ]
+                elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]
                 then
-                    echo "fail 'Ambiguous link'" > $kak_command_fifo
-                    exit 1
+                    printf ": fail 'Ambiguous link'<ret>" > $kak_command_fifo
+                else
+                    printf ': edit %s<ret>' "$file"
                 fi
-                echo ":e '$file'<ret>"
             fi
         }
     }
