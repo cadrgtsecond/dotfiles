@@ -49,7 +49,7 @@ provide-module markdown-custom %{
                 if [ -z "$file" ]
                 then
                     slug=$(printf '%s' "$kak_selection" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-' )
-                    printf '"ay: edit %s<ret>' "$HOME/Documents/notes/home/$slug.md"
+                    printf '"ay: edit %s<ret>' "$BRAIN_DIR/notes/home/$slug.md"
                     printf 'i# <c-r>a<esc>'
                 # TODO: Support resolving ambiguous links
                 elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]

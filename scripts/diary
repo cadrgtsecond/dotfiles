@@ -1,0 +1,2 @@
+#!/bin/sh
+kak "$BRAIN_DIR/journals/$(date -I).md"
