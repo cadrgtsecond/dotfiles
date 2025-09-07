@@ -22,7 +22,10 @@ hook global WinSetOption filetype=(markdown) %{
             }
         }
     }
-    set-option window completers 'option=markdown_completions' %opt{completers}
+    # I don't want word completers for markdown. Way too distracting
+    set-option window completers 'option=markdown_completions' 'filename'
+    # I like specific times in my journals and markdown files
+    add-highlighter window/time regex '\d\d:\d\d(:\d\d)?(?!\])' 0:keyword
 }
 
 provide-module markdown-custom %{
