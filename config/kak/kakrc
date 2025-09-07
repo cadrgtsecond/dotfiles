@@ -1,9 +1,21 @@
 hook global WinSetOption filetype=(rust|zig) %{
     eval %sh{ kak-lsp }
+}
+
+define-command -docstring "Enable lsp" enable-lsp %{
     set-option window lsp_language_id %opt{filetype}
+    lsp-enable-window
+
+    # Disable LSP Completion
+    set-option window completers 'filename' 'word=all'
+
+    # Disable clutter
+    lsp-diagnostic-lines-disable window
+    lsp-inline-diagnostics-disable window
 
     map -docstring "Enter LSP Mode" window user <space> ": enter-user-mode lsp<ret>"
 }
+
 hook global WinSetOption filetype=zig %{
     set-option window lsp_servers %{
         [zls]
@@ -13,7 +25,6 @@ hook global WinSetOption filetype=zig %{
         enable_snippets = false
         enable_argument_placeholders = false
     }
-    lsp-enable
 }
 
 set-option global indentwidth 4

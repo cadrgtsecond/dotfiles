@@ -45,19 +45,8 @@ provide-module markdown-custom %{
             then
                 printf "r "
             else
-                file=$(rg -l "^# $kak_selection$" < /dev/null)
-                if [ -z "$file" ]
-                then
-                    slug=$(printf '%s' "$kak_selection" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-' )
-                    printf '"ay: edit %s<ret>' "$BRAIN_DIR/notes/home/$slug.md"
-                    printf 'i# <c-r>a<esc>'
-                # TODO: Support resolving ambiguous links
-                elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]
-                then
-                    printf ": fail 'Ambiguous link'<ret>" > $kak_command_fifo
-                else
-                    printf ': edit %s<ret>' "$file"
-                fi
+                file=$(locate-note "$kak_selection")
+                printf ': edit %s<ret>' "$file"
             fi
         }
     }

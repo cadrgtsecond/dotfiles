@@ -1,2 +1,2 @@
 #!/bin/sh
-kak "$BRAIN_DIR/journals/$(date -I).md"
+"$EDITOR" "$(locate-note "$(date -I)" "$BRAIN_DIR/journals")"
