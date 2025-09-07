@@ -1,0 +1,3 @@
+#!/bin/sh
+
+footclient sh -c '( set_theme & ); "$@"' newterm "$@"

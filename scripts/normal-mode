@@ -7,4 +7,5 @@ s	script-mode
 t	tile-mode
 k	footclient sh -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
 q	printf 'kill!' | kak -p "$(kak -l | tofi --prompt-text "kill:")"
+n	newterm sh -c 'cd "$BRAIN_DIR" && kak "$(locate-note "$(rg -Ir"\$1" "^# (.*)" "$BRAIN_DIR" | tofi)")"'
 
