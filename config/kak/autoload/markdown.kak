@@ -40,17 +40,6 @@ provide-module markdown-custom %{
 
     define-command markdown-open-link %{
         execute-keys "<a-t>[t]"
-        execute-keys -save-regs 'a:' -with-hooks  %sh{
-            if [ "$kak_selection" = " " ]
-            then
-                printf "rX"
-            elif [ "$kak_selection" = "X" ]
-            then
-                printf "r "
-            else
-                file=$(locate-note "$kak_selection")
-                printf ': edit %s<ret>' "$file"
-            fi
-        }
+        edit %sh{ locate-note "$kak_selection" }
     }
 }
