@@ -6,12 +6,16 @@ export PS1=" \e[36m\w\e[37;2m>\e[0m\n \e[32mλ \e[0m"
 set_theme &
 
 # Quick cd hack
-touch /dev/shm/pwd
+[ -f /tmp/pwd ] || echo "$HOME" > /tmp/pwd
 function ccd () {
 	cd "$@"
-	pwd > /dev/shm/pwd
+	pwd > /tmp/pwd
 }
-cd "$(cat /dev/shm/pwd)"
+cd "$(cat /tmp/pwd)"
+function zz() {
+    z "$@"
+    ccd .
+}
 
 if [ -n "$START_COMMAND" ]
 then
@@ -21,6 +25,7 @@ then
 fi
 
 eval "$(zoxide init bash)"
+export FZF_DEFAULT_COMMAND='fd -t f'
 eval "$(fzf --bash)"
 . "$HOME/.cargo/env"
 
