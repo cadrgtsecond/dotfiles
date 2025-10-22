@@ -1,0 +1,17 @@
+#!/bin/sh
+
+input=$(cat | sed 's/"/\\"/g')
+
+if [ "$1" = "-" ] || [ -z "$1" ]; then
+    k <<END
+r: $input
+\` 0: \`k@ r
+END
+else
+    k <<END
+s:"$input"
+n: #s
+r: $1
+\` 0: :[\`C~@r; r; \`k@r]
+END
+fi
