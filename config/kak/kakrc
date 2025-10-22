@@ -45,3 +45,6 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     map -docstring "Toggle parinfer mode" window user "p" ": parinfer-toggle-mode<ret>"
 }
 
+# Search functions shouldn't flash the screen
+map global normal '/' ': set-register / ""<ret>/'
+map global normal '<a-/>' ': set-register / ""<ret><a-/>'
