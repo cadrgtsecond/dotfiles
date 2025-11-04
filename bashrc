@@ -26,6 +26,7 @@ fi
 
 eval "$(zoxide init bash)"
 export FZF_DEFAULT_COMMAND='fd -t f'
+export FZF_CTRL_T_COMMAND='fd'
 eval "$(fzf --bash)"
 . "$HOME/.cargo/env"
 
