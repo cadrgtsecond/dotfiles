@@ -13,3 +13,22 @@ template = "tofi"
 file = "~/.local/bin/scripts/set_theme"
 template = "bashrc"
 hook = "killall set_theme -s USR1"
+
+[[items]]
+file = "~/.themes/FlatColor/gtk-3.0/gtk.css"
+template = "gtk-flatcolor"
+subtemplate = "gtk-3"
+start = "/* Start flavours */"
+end = "/* End flavours */"
+
+[[items]]
+file = "~/.themes/FlatColor/gtk-3.20/gtk.css"
+template = "gtk-flatcolor"
+subtemplate = "gtk-3"
+start = "/* Start flavours */"
+end = "/* End flavours */"
+
+[[items]]
+file = "~/.themes/FlatColor/gtk-2.0/gtkrc"
+template = "gtk-flatcolor"
+subtemplate = "gtk-2"
