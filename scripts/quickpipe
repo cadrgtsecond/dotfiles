@@ -9,7 +9,7 @@ mkfifo "$dir/stderr"
 footclient -a quickpipe sh -c "(set_theme &); < $dir/stdin > $dir/stdout 2> $dir/stderr \"\$@\"" quick "$@" &
 cat "$dir/stdout" </dev/null &
 cat "$dir/stderr" 1>&2 </dev/null &
-cat > "$dir/stdin"
+cat >"$dir/stdin"
 wait
 
 rm -rf "$dir"

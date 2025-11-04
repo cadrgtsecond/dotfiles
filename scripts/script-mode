@@ -2,8 +2,8 @@
 s	test = grim -g "$(slurp)" "$(fd -t d | tofi --matching-algorithm=fuzzy --prompt-text="Choose a file:" --require-match=false)"
 e	cat ~/.local/bin/scripts/unicode_list.csv | tofi | cut -d, -f1 | wl-copy -n
 t	flavours list | tr ' ' '\n' | quickpipe fzf --preview 'flavours apply {}'
-k	kak -l | xargs -I{} kak -c {} -e kill!
-b	change-keyboard $(tofi < ~/.config/keyboards)
+q	kak -l | xargs -I{} kak -c {} -e kill!
+b	change-keyboard $(tofi <~/.config/keyboards)
 pr	xbps-query -Rs '' | quickpipe fzf
 pi	xbps-query -s '' | quickpipe fzf
 pm	xbps-query -m | quickpipe fzf

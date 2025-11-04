@@ -1,11 +1,11 @@
 #!/usr/bin/env -S enter-mode "Normal:"
 reload	~/.config/river/init
 x	riverctl exit
-e	sh -c "$(tofi-run)"
+r	sh -c "$(tofi-run --require-match=false)"
+e	newterm "$(tofi-run --require-match=false)"
 o	open-mode
 s	script-mode
 t	tile-mode
-k	footclient sh -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
+k	newterm sh -c 'START_COMMAND="kak -c \$(list-kak | tofi)" exec bash'
 q	printf 'kill!' | kak -p "$(kak -l | tofi --prompt-text "kill:")"
-n	newterm sh -c 'cd "$BRAIN_DIR" && kak "$(locate-note "$(rg -Ir"\$1" "^# (.*)" "$BRAIN_DIR" | tofi)")"'
-
+n	newterm kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | tofi --require-match=false)")"

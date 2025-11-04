@@ -3,15 +3,13 @@
 title=$1
 dir=${2:-$BRAIN_DIR/home}
 
-file=$(rg -l "^# $title" "$BRAIN_DIR" < /dev/null)
-if [ -z "$file" ]
-then
+file=$(rg -l "^# $title" "$BRAIN_DIR" </dev/null)
+if [ -z "$file" ]; then
     slug=$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-')
     file="$dir/$slug.md"
-    printf "# %s" "$title" > "$file"
+    printf "# %s" "$title" >"$file"
     printf '%s' "$file"
-elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]
-then
+elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]; then
     printf "Ambiguous note" >&2
     exit 1
 else

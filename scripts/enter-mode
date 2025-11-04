@@ -3,17 +3,17 @@
 name=$1
 file=$2
 shift 2
-
 while true; do
-  result=$(printf "%s\n%s" "$(cat "$file")" "?	quick kak $file" |
-           grep -v "^#" |
-           tofi --prompt-text="$name$(printf '\n')" "--include=$HOME/.config/tofi/modemenu" "$@" |
-           cut -f 2)
-  [ -z "$result" ] && break
-  if echo "$0" | grep "lock$"
-  then
-    sh -c "$result"
-  else
-    exec sh -c "$result"
-  fi
+    result=$(
+        printf "%s\n%s" "$(cat "$file")" "?	quick kak $file" |
+            grep -v "^#" |
+            tofi --prompt-text="$name" "--include=$HOME/.config/tofi/modemenu" "$@" |
+            cut -f 2
+    )
+    [ -z "$result" ] && break
+    if echo "$0" | grep "lock$"; then
+        sh -c "$result"
+    else
+        exec sh -c "$result"
+    fi
 done
