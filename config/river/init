@@ -7,13 +7,10 @@ change-keyboard $(head -n1 ~/.config/keyboards)
 # In case stuff breaks
 riverctl map normal Super Delete keyboard-layout us
 
-killall "swww-daemon" "pipewire" "pipewire-pulse" "yambar"
-
-# Terminal
-foot --server &
+pgrep -u "$USER" -x runsvdir || runsvdir ~/.local/service &
 
 # Window Management
-riverctl map normal Super+Shift Return spawn footclient
+riverctl map normal Super+Shift Return spawn 'exec footclient'
 riverctl map normal Super+Shift T spawn foot
 riverctl map normal Super W close
 
@@ -93,11 +90,3 @@ riverctl focus-follows-cursor always
 riverctl rule-add -app-id 'quick*' float
 riverctl rule-add -app-id "bar" csd
 riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
-
-# Daemons
-swww-daemon &
-swww img ~/Pictures/wallpaper.png
-pipewire &
-pipewire-pulse &
-yambar &

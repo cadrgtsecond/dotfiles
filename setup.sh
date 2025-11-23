@@ -9,3 +9,10 @@ for f in "$PWD/config/"*
 do
     ln -sf "$f" ~/.config/
 done
+
+rm -rf ~/.local/service
+mkdir -p ~/.local/service
+for f in "$PWD/sv/"*
+do
+    ln -sf "$f" ~/.local/service
+done
