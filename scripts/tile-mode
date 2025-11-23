@@ -5,10 +5,10 @@ h	riverctl move left 100
 j	riverctl move down 100
 k	riverctl move up 100
 l	riverctl move right 100
-r	riverctl resize horizontal -100
-r	riverctl resize horizontal 100
-r	riverctl resize vertical 100
-r	riverctl resize vertical -100
+rh	riverctl resize horizontal -100
+rl	riverctl resize horizontal 100
+rj	riverctl resize vertical 100
+rk	riverctl resize vertical -100
 t	riverctl toggle-float
 f	riverctl toggle-fullscreen
 1	tags=$((1 << (1 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
