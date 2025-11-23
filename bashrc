@@ -30,3 +30,4 @@ export FZF_CTRL_T_COMMAND='fd'
 eval "$(fzf --bash)"
 . "$HOME/.cargo/env"
 
+alias pj="pijul"
