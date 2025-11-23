@@ -2,5 +2,5 @@
 anchor = bottom-right
 width = 30%
 height = 100%
-auto-accept-single=true
-matching-algorithm=prefix
+auto-accept-single = true
+matching-algorithm = prefix
