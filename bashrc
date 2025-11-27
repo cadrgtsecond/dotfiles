@@ -1,6 +1,12 @@
 #!/bin/bash
-# Actually not a big fan of shell history. Might revise in the future
-HISTFILE=""
+
+# History
+HISTFILE=~/.cache/bash_history
+export LESSHISTFILE=~/.cache/less_history
+export PYTHON_HISTORY=~/.cache/python_history
+export PROMPT_COMMAND='history -a'
+export RLWRAP_HOME=~/.cache
+
 export PS1=" \e[36m\w\e[37;2m>\e[0m\n \e[32mλ \e[0m"
 
 set_theme &
