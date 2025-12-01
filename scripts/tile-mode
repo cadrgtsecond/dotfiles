@@ -1,22 +1,22 @@
-#!/usr/bin/env -S enter-mode-lock "Tile:"
-+	riverctl send-layout-cmd rivertile "main-count +1"
--	riverctl send-layout-cmd rivertile "main-count -1"
-h	riverctl move left 100
-j	riverctl move down 100
-k	riverctl move up 100
-l	riverctl move right 100
-rh	riverctl resize horizontal -100
-rl	riverctl resize horizontal 100
-rj	riverctl resize vertical 100
-rk	riverctl resize vertical -100
-t	riverctl toggle-float
-f	riverctl toggle-fullscreen
-1	tags=$((1 << (1 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-2	tags=$((1 << (2 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-3	tags=$((1 << (3 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-4	tags=$((1 << (4 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-5	tags=$((1 << (5 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-6	tags=$((1 << (6 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-7	tags=$((1 << (7 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-8	tags=$((1 << (8 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
-9	tags=$((1 << (9 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags
+#!/usr/bin/env enter-mode-lock
+riverctl send-layout-cmd rivertile "main-count +1"	+
+riverctl send-layout-cmd rivertile "main-count -1"	-
+riverctl move left 100	h
+riverctl move down 100	j
+riverctl move up 100	k
+riverctl move right 100	l
+riverctl resize horizontal -100	rh
+riverctl resize horizontal 100	rl
+riverctl resize vertical 100	rj
+riverctl resize vertical -100	rk
+riverctl toggle-float	t
+riverctl toggle-fullscreen	f
+tags=$((1 << (1 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	1
+tags=$((1 << (2 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	2
+tags=$((1 << (3 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	3
+tags=$((1 << (4 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	4
+tags=$((1 << (5 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	5
+tags=$((1 << (6 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	6
+tags=$((1 << (7 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	7
+tags=$((1 << (8 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	8
+tags=$((1 << (9 - 1))) riverctl set-view-tags $tags && riverctl set-focused-tags $tags	9

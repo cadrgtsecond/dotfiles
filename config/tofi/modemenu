@@ -1,6 +1,0 @@
-# Configuration of tofi as the mode menu
-anchor = bottom-right
-width = 30%
-height = 100%
-auto-accept-single = true
-matching-algorithm = prefix

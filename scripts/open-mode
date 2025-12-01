@@ -1,5 +1,5 @@
-#!/usr/bin/env -S enter-mode "Open:"
-f	firefox-wayland &
-t	foot &
-u	firefox-wayland -P "Abhinav Krishna" &
-a	quick alsamixer &
+#!/usr/bin/env enter-mode
+firefox-wayland &	f
+foot &	t
+firefox-wayland -P "Abhinav Krishna" &	u
+quick alsamixer &	a

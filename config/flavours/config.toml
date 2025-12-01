@@ -6,10 +6,6 @@ template = "kakoune"
 hook = "for i in $(kak -l); do echo source ~/.config/kak/autoload/colorscheme.kak | kak -p $i; done"
 
 [[items]]
-file = "~/.config/tofi/config"
-template = "tofi"
-
-[[items]]
 file = "~/.local/bin/scripts/set_theme"
 template = "bashrc"
 hook = "killall set_theme -s USR1"
