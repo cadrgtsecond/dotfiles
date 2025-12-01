@@ -1,3 +1,3 @@
 #!/bin/sh
 
-footclient sh -c '( set_theme & ); "$@"' newterm "$@"
+footclient sh -c 'set_theme & exec "$@"' newterm "$@"

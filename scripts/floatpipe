@@ -6,7 +6,7 @@ mkfifo "$dir/stdin"
 mkfifo "$dir/stdout"
 mkfifo "$dir/stderr"
 
-footclient -a quickpipe sh -c "(set_theme &); < $dir/stdin > $dir/stdout 2> $dir/stderr \"\$@\"" quick "$@" &
+footclient -a floatpipe sh -c "set_theme & < $dir/stdin > $dir/stdout 2> $dir/stderr exec \"\$@\"" floatpipe "$@" &
 cat "$dir/stdout" </dev/null &
 cat "$dir/stderr" 1>&2 </dev/null &
 cat >"$dir/stdin"

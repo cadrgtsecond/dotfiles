@@ -2,4 +2,4 @@
 firefox-wayland &	f
 foot &	t
 firefox-wayland -P "Abhinav Krishna" &	u
-quick alsamixer &	a
+floatterm alsamixer &	a
