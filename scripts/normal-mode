@@ -8,4 +8,6 @@ tile-mode	t
 newterm sh -c 'kak -c $(list-kak | bemenu); exec bash'	k
 printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"	q
 newterm kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | bemenu -il 20)")"	n
-newterm sudo zzz	p
+newterm kak "$(fd . "$BRAIN_DIR" | bemenu -il 20)"	N
+newterm doas zzz	p
+wlrctl keyboard type $(date -I)	d

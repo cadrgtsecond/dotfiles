@@ -1,5 +1,5 @@
 #!/usr/bin/env enter-mode
-firefox-wayland &	f
+firefox &	f
 foot &	t
-firefox-wayland -P "Abhinav Krishna" &	u
+firefox -P "Abhinav Krishna" &	u
 floatterm alsamixer &	a
