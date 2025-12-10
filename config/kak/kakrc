@@ -1,8 +1,5 @@
-hook global WinSetOption filetype=(rust|zig) %{
+define-command -docstring 'Enable lsp' enable-lsp %{
     eval %sh{ kak-lsp }
-}
-
-define-command -docstring "Enable lsp" enable-lsp %{
     set-option window lsp_language_id %opt{filetype}
     lsp-enable-window
 
@@ -13,27 +10,41 @@ define-command -docstring "Enable lsp" enable-lsp %{
     lsp-diagnostic-lines-disable window
     lsp-inline-diagnostics-disable window
 
-    map -docstring "Enter LSP Mode" window user <space> ": enter-user-mode lsp<ret>"
+    map -docstring 'Enter LSP Mode' window user <space> ': enter-user-mode lsp<ret>'
+    map window goto d <esc>:lsp-definition<ret> -docstring 'LSP definition'
+    map window goto r <esc>:lsp-references<ret> -docstring 'LSP references'
+    map window goto y <esc>:lsp-type-definition<ret> -docstring 'LSP type definition'
+    map window insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
 }
 
-hook global WinSetOption filetype=zig %{
-    set-option window lsp_servers %{
-        [zls]
-        root_globs = ["build.zig"]
-        settings_section = "zls"
-        [zls.settings.zls]
-        enable_snippets = false
-        enable_argument_placeholders = false
+define-command -docstring 'Toggle UI elements' -params 1.. \
+toggle-highlighter %{
+    try %{
+        add-highlighter %arg{@}
+    } catch %{
+        remove-highlighter %arg{1}
+    }
+}
+define-command -docstring 'Toggle options' -params 1.. \
+toggle-option %{
+    try %{
+        evaluate-commands "evaluate-commands %%sh{ [ -z ""$kak_opt_%arg{2}"" ] && printf nop || printf fail }"
+        set-option %arg{@}
+    } catch %{
+        set-option %arg{1} %arg{2} ''
     }
 }
 
+map -docstring 'Run some useful commands' global user c \
+': evaluate-commands %sh{ cat "$kak_config/commands.kak" | bemenu -l 20; }<ret>'
+
 set-option global indentwidth 4
-define-command -docstring "Rename the current session to given name, and try to daemonize them" -params 1 \
+define-command -docstring 'Rename the current session to given name, and try to daemonize them' -params 1 \
 try-daemonize %{
     try %{ daemonize-session }
     rename-session %arg{1}
 }
-map -docstring "Rename session" global user z ': prompt "Session Name:" %{ try-daemonize %val{text} } <ret>'
+map -docstring 'Rename session' global user z ': prompt "Session Name:" %{ try-daemonize %val{text} } <ret>'
 
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell|markdown|asciidoc) %{
     set window indentwidth 2
@@ -42,9 +53,9 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell|m
 
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     parinfer-enable-window
-    map -docstring "Toggle parinfer mode" window user "p" ": parinfer-toggle-mode<ret>"
+    map -docstring 'Toggle parinfer mode' window user p ': parinfer-toggle-mode<ret>'
 }
 
 # Search functions shouldn't flash the screen
-map global normal '/' ': set-register / ""<ret>/'
-map global normal '<a-/>' ': set-register / ""<ret><a-/>'
+map global normal / ': set-register / ''<ret>/'
+map global normal <a-/> ': set-register / ''<ret><a-/>'
