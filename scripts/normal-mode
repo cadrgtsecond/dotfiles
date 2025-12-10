@@ -21,7 +21,6 @@ newterm kak "$(fd . "$BRAIN_DIR" | bemenu -il 20)"	N
 
 # Packages
 apk search | floatpipe fzf | wl-copy	pr
-apk list -I | floatpipe fzf | wl-copy	pi
 cat /etc/apk/world | floatpipe fzf | wl-copy	pm
 floatterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; printf failure...; read; done; printf done...; read'	pw
 floatterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
@@ -31,3 +30,6 @@ firefox	of
 foot	ot
 firefox -P "Abhinav Krishna"	ou
 floatterm alsamixer	oa
+
+# Goto
+changepwd "$(floatpipe zoxide query -i)"	g
