@@ -1,0 +1,8 @@
+#!/bin/sh
+files="$(rg -l '#!/bin/sh')"
+IFS='
+'
+# shellcheck disable=SC2086
+shellcheck $files
+# shellcheck disable=SC2086
+shfmt -w -i 4 $files

@@ -37,4 +37,9 @@ bar:
     - clock:
         time-format: "%Y-%m-%d %H:%M:%S"
         content:
-          - string: {text: "{time}"}
+          string: {text: "{time}"}
+  right:
+    - script:
+        path: ~/.local/bin/scripts/pwd_module
+        args: []
+        content: {string: {text: "{pwd}"}}

@@ -1,0 +1,13 @@
+#!/bin/sh
+cd || true
+spawn=$XDG_RUNTIME_DIR/spawn
+spawnpwd=$XDG_RUNTIME_DIR/spawnpwd
+
+# shellcheck disable=SC2016
+mkfifo "$spawn" 2>/dev/null || printf '$spawn exists...\n'
+
+while true; do
+    printf '%s' "$PWD" >"$spawnpwd"
+    command=$(cat "$spawn")
+    eval "$command" || printf 'Failed to execute %s' "$command"
+done

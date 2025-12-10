@@ -27,7 +27,7 @@ floatterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; p
 floatterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
 
 # Open
-firefox &	of
-foot &	ot
-firefox -P "Abhinav Krishna" &	ou
-floatterm alsamixer &	oa
+firefox	of
+foot	ot
+firefox -P "Abhinav Krishna"	ou
+floatterm alsamixer	oa

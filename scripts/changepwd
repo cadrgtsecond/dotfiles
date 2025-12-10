@@ -1,0 +1,3 @@
+#!/bin/sh
+printf '%s\n' "${1:-$PWD}"
+spawnfg "cd '$(printf '%s' "${1:-$PWD}" | sed "s/'/'\\\\''/g")'"

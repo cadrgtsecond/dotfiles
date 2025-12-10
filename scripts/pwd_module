@@ -1,0 +1,13 @@
+#!/bin/sh
+
+while true; do
+    printf 'pwd|string|'
+    pwd=$(cat "$XDG_RUNTIME_DIR/spawnpwd")
+    short=${pwd#"$HOME"}
+    if [ "$pwd" != "$short" ]; then
+        printf '~'
+    fi
+    printf '%s' "$short"
+    printf '\n\n'
+    find "$XDG_RUNTIME_DIR/spawnpwd" | entr -nzp true
+done
