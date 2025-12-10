@@ -1,5 +1,0 @@
-#!/usr/bin/env enter-mode
-firefox &	f
-foot &	t
-firefox -P "Abhinav Krishna" &	u
-floatterm alsamixer &	a
