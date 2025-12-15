@@ -13,8 +13,8 @@ riverctl map normal Super Delete keyboard-layout us
 pgrep -u "$USER" -x s6-svscan || s6-svscan ~/.local/service &
 
 # Window Management
-riverctl map normal Super+Shift Return spawn 'spawnbg footclient'
-riverctl map normal Super+Shift T spawn 'spawnbg foot'
+riverctl map normal Super+Shift Return spawn 'spawn footclient'
+riverctl map normal Super+Shift T spawn 'spawn foot'
 riverctl map normal Super W close
 
 riverctl map normal Super L focus-view next
@@ -51,7 +51,7 @@ all_tags=$(((1 << 32) - 1))
 riverctl map normal Super 0 set-focused-tags "$all_tags"
 riverctl map normal Super+Shift 0 set-view-tags "$all_tags"
 
-riverctl map normal Super Space spawn 'spawnbg normal-mode'
+riverctl map normal Super Space spawn 'spawn normal-mode'
 riverctl map normal Super Up send-layout-cmd rivertile "main-location top"
 riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
 riverctl map normal Super Down send-layout-cmd rivertile "main-location bottom"

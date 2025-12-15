@@ -1,3 +1,5 @@
 #!/bin/sh
-printf '%s\n' "${1:-$PWD}"
-spawnfg "cd '$(printf '%s' "${1:-$PWD}" | sed "s/'/'\\\\''/g")'"
+newdir=${1:-$PWD}
+printf '%s\n' "$newdir"
+printf '%s' "$newdir" >"${XDG_RUNTIME_DIR}/spawnpwd"
+spawnc execline-cd "$newdir" spawnd

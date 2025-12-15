@@ -1,2 +1,4 @@
 #!/bin/sh
+cd ~
+echo ~ > "$XDG_RUNTIME_DIR/spawnpwd"
 exec spawnd

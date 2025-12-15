@@ -1,6 +1,6 @@
 #!/bin/execlineb
 importas -iS HOME
-pipeline { printf %s/.config/theme $HOME }
+heredoc 0 ${HOME}/.config/theme
 entr -n
 envfile ${HOME}/.config/theme
 importas -iS BASE0D

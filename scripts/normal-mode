@@ -29,10 +29,10 @@ floatterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; p
 floatterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
 
 # Open
-firefox	of
-foot	ot
-firefox -P "Abhinav Krishna"	ou
-floatterm alsamixer	oa
+spawn firefox	of
+spawn foot	ot
+spawn firefox -P "Abhinav Krishna"	ou
+spawn floatterm alsamixer	oa
 
 # Goto
 changepwd "$(floatpipe zoxide query -i)"	g

@@ -1,0 +1,4 @@
+#!/bin/execlineb
+importas -iS SPAWND_FIFO
+redirfd -w 1 $SPAWND_FIFO
+dollarat -d ""
