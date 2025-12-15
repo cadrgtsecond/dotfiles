@@ -1,0 +1,13 @@
+#!/bin/execlineb
+importas -iS HOME
+pipeline { printf %s/.config/theme $HOME }
+entr -n
+envfile ${HOME}/.config/theme
+importas -iS BASE0D
+importas -iS BASE02
+foreground { riverctl border-color-focused 0x${BASE0D} }
+foreground { riverctl border-color-unfocused 0x${BASE02} }
+foreground {
+    forbacktickx -E i { kak -l }
+    pipeline { printf "source %s/.config/kak/autoload/colorscheme.kak" $HOME } kak -p $i
+}

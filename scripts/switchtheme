@@ -1,0 +1,8 @@
+#!/bin/sh
+
+grep -Ev "^scheme:|^author:" "$1" | tr '[:lower:]' '[:upper:]' | tr -d ' "' | tr ':' '=' >~/.config/theme
+IFS='
+'
+for i in $(kak -l); do
+    printf 'source %s' ~/.config/kak/autoload/colorscheme.kak | kak -p "$i"
+done

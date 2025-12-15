@@ -1,0 +1,3 @@
+#!/bin/sh
+
+fd -e yaml . ~/.local/share/base16-themes | tr -d '[:blank:]' | sed 's@.*/\(.*\).yaml$@\1:&@g'

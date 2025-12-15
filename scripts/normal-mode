@@ -3,7 +3,10 @@
 riverctl exit	x
 sh -c "$(bemenu < /dev/null)"	e
 tile-mode	t
-printf 'zzz\npoweroff now' | bemenu | xargs newterm doas 	p
+printf 'zzz\npoweroff now' | bemenu | xargs newterm doas 	P
+
+# Screenshot
+grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"	S
 
 # Keyboard
 wlrctl keyboard type $(date -I)	d
@@ -33,3 +36,6 @@ floatterm alsamixer	oa
 
 # Goto
 changepwd "$(floatpipe zoxide query -i)"	g
+
+# Theme
+listthemes | floatpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T
