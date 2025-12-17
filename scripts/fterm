@@ -1,0 +1,3 @@
+#!/bin/sh
+
+footclient -a float sh -c 'set_theme & exec "$@"' fterm "$@"

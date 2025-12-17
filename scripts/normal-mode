@@ -3,7 +3,7 @@
 riverctl exit	x
 sh -c "$(bemenu < /dev/null)"	e
 tile-mode	t
-printf 'zzz\npoweroff now' | bemenu | xargs newterm doas 	P
+printf 'zzz\npoweroff now' | bemenu | xargs term doas 	P
 
 # Screenshot
 grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"	S
@@ -14,28 +14,29 @@ cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-copy
 change-keyboard $(bemenu -l 20 <~/.config/keyboards)	us
 
 # Kakoune stuff
-newterm sh -c 'kak -c $(list-kak | bemenu); exec bash'	kk
+fd -t f | fpipe fzf | xargs term kak	K
+term sh -c 'kak -c $(list-kak | bemenu); exec bash'	kk
 printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"	kq
 kak -l | xargs -I{} kak -c {} -e kill!	kQ
 
 # Notes
-newterm kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | bemenu -il 20)")"	n
-newterm kak "$(fd . "$BRAIN_DIR" | bemenu -il 20)"	N
+term kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | bemenu -il 20)")"	n
+changepwd "$BRAIN_DIR"	N
 
 # Packages
-apk search | floatpipe fzf | wl-copy	pr
-cat /etc/apk/world | floatpipe fzf | wl-copy	pm
-floatterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; printf failure...; read; done; printf done...; read'	pw
-floatterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
+apk search | fpipe fzf | wl-copy	pr
+cat /etc/apk/world | fpipe fzf | wl-copy	pm
+fterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; printf failure...; read; done; printf done...; read'	pw
+fterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
 
 # Open
 spawn firefox	of
 spawn foot	ot
 spawn firefox -P "Abhinav Krishna"	ou
-spawn floatterm alsamixer	oa
+spawn fterm alsamixer	oa
 
 # Goto
-changepwd "$(floatpipe zoxide query -i)"	g
+changepwd "$(fpipe zoxide query -i)"	g
 
 # Theme
-listthemes | floatpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T
+listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T
