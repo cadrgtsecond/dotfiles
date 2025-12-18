@@ -1,15 +1,19 @@
 #!/usr/bin/env enter-mode
 ~/.config/river/init	reload
-riverctl exit	x
+riverctl exit	X
 sh -c "$(bemenu < /dev/null)"	e
 tile-mode	t
 printf 'zzz\npoweroff now' | bemenu | xargs term doas 	P
+
+# Browser
+surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"	oS
+surf "$(bemenu -p surf -F https:// </dev/null)"	os
 
 # Screenshot
 grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"	S
 
 # Keyboard
-wlrctl keyboard type $(date -I)	d
+wtype "$(date -I)"	d
 cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-copy -n	ue
 change-keyboard $(bemenu -l 20 <~/.config/keyboards)	us
 
@@ -38,12 +42,12 @@ spawn fterm alsamixer	oa
 fpipe zoxide query -i | xargs changepwd	Z
 printf %s "$PWD" | writeharp dir	J
 changepwd "$(readharp dir)"	j
-{ readharp dir; printf '\n'; } | xargs -0I{} wlrctl keyboard type 'cd {}'	c
-{ readharp dir; printf '\n'; } | xargs -0I{} wlrctl keyboard type 'ccd {}'	C
+{ readharp dir; printf '\n'; } | xargs -0I{} wtype 'cd {}'	c
+{ readharp dir; printf '\n'; } | xargs -0I{} wtype 'ccd {}'	C
 
 # Web
 wl-paste | writeharp web	W
-wlrctl keyboard type "$(readharp web)"	w
+wtype "$(readharp web)"	w
 
 # Theme
 listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T

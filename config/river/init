@@ -1,7 +1,6 @@
 #!/bin/sh
 
 export XDG_CURRENT_DESKTOP=river
-export BEMENU_OPTS="-W 0.8"
 
 # Set the keyboard layout
 # We intend for field splitting to take place
