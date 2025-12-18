@@ -21,7 +21,6 @@ kak -l | xargs -I{} kak -c {} -e kill!	kQ
 
 # Notes
 term kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | bemenu -il 20)")"	n
-changepwd "$BRAIN_DIR"	N
 
 # Packages
 apk search | fpipe fzf | wl-copy	pr
@@ -36,7 +35,15 @@ spawn firefox -P "Abhinav Krishna"	ou
 spawn fterm alsamixer	oa
 
 # Goto
-changepwd "$(fpipe zoxide query -i)"	g
+fpipe zoxide query -i | xargs changepwd	Z
+printf %s "$PWD" | writeharp dir	J
+changepwd "$(readharp dir)"	j
+{ readharp dir; printf '\n'; } | xargs -0I{} wlrctl keyboard type 'cd {}'	c
+{ readharp dir; printf '\n'; } | xargs -0I{} wlrctl keyboard type 'ccd {}'	C
+
+# Web
+wl-paste | writeharp web	W
+wlrctl keyboard type "$(readharp web)"	w
 
 # Theme
 listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T

@@ -1,0 +1,8 @@
+#!/bin/sh
+exec 2>/dev/null
+path="$HOME/.local/share/harp/$1"
+mkdir -p "$path"
+[ -z "$3" ] && printf %s "$path/$2" && exit
+rel=$(printf %s "$3" | sed 's/_/__/g;s@/@_@g')
+mkdir -p "$path$rel"
+printf %s "$path$rel/$2"
