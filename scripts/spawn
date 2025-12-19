@@ -1,4 +1,3 @@
 #!/bin/execlineb
-backtick -E cmd { dollarat -d "" }
-define -sd "" cmd_split $cmd
-spawnc background { $cmd_split } spawnd
+elgetpositionals
+spawnc background { $@ } spawnd

@@ -1,6 +1,5 @@
 #!/bin/execlineb
 importas -iS SPAWND_FIFO
-redirfd -r 0 $SPAWND_FIFO
-withstdinas -E cmd
+backtick -E cmd { cat $SPAWND_FIFO }
 define -sd "" cmd_split $cmd
 $cmd_split

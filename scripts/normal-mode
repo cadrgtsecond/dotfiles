@@ -4,6 +4,9 @@ riverctl exit	X
 sh -c "$(bemenu < /dev/null)"	e
 tile-mode	t
 printf 'zzz\npoweroff now' | bemenu | xargs term doas 	P
+wl-paste -p | wl-copy	yc
+wl-paste | wtype -	yp
+wl-paste | fpipe vipe | wl-copy	ye
 
 # Browser
 surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"	oS

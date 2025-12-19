@@ -1,2 +1,5 @@
 #!/bin/sh
-{ seq 65 90; seq 97 122; } | xargs -I{} printf '%x\n' {} | xargs -I{} printf '\x{}\n'
+{
+    seq 65 90
+    seq 97 122
+} | xargs -I{} printf '%x\n' {} | xargs -I{} printf '\x{}\n'
