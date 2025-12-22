@@ -8,6 +8,11 @@ wl-paste -p | wl-copy	yc
 wl-paste | wtype -	yp
 wl-paste | fpipe vipe | wl-copy	ye
 
+BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-focused-tags 	g
+BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-focused-tags 	G
+BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-view-tags 	v
+BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-view-tags 	V
+
 # Browser
 surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"	oS
 surf "$(bemenu -p surf -F https:// </dev/null)"	os
@@ -30,7 +35,7 @@ kak -l | xargs -I{} kak -c {} -e kill!	kQ
 term kak "$(locate-note "$(rg -Ir\$1 "^# (.*)" "$BRAIN_DIR" | sort | bemenu -il 20)")"	n
 
 # Packages
-apk search | fpipe fzf | wl-copy	pr
+apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzf --preview 'apk info {} | fmt -w $(tput cols)' | wl-copy	pr
 cat /etc/apk/world | fpipe fzf | wl-copy	pm
 fterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; printf failure...; read; done; printf done...; read'	pw
 fterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
@@ -45,8 +50,8 @@ spawn fterm alsamixer	oa
 fpipe zoxide query -i | xargs changepwd	Z
 printf %s "$PWD" | writeharp dir	J
 changepwd "$(readharp dir)"	j
-{ readharp dir; printf '\n'; } | xargs -0I{} wtype 'cd {}'	c
-{ readharp dir; printf '\n'; } | xargs -0I{} wtype 'ccd {}'	C
+printf 'cd %s\n' "$(readharp dir)" | wtype -	c
+printf 'ccd %s\n' "$(readharp dir)" | wtype -	C
 
 # Web
 wl-paste | writeharp web	W
@@ -54,3 +59,6 @@ wtype "$(readharp web)"	w
 
 # Theme
 listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T
+
+# Cargo
+cargo fmt	lf
