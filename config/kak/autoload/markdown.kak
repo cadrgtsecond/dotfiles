@@ -10,7 +10,7 @@ hook global WinSetOption filetype=(markdown) %{
     hook -group markdown-completion window NormalIdle .* %{
         evaluate-commands %sh{
             printf 'set-option window markdown_headings '
-            rg -Ir\$1 '^# (.*)$' "$BRAIN_DIR" | sed "s/'/''/g;"'s/|/\\|/g;'"s/.*/\0||\0/;s/^/'/;s/$/' /" | tr -d '\n'
+            rg -Ir\$1 '^# (.*)$' . | sed "s/'/''/g;"'s/|/\\|/g;'"s/.*/\0||\0/;s/^/'/;s/$/' /" | tr -d '\n'
         }
     }
     hook -group markdown-completion window InsertKey .* %{

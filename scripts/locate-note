@@ -1,17 +1,19 @@
-#!/bin/sh
+#!/bin/execlineb
 
-title=$1
-dir=${2:-$BRAIN_DIR/home}
-
-file=$(rg -l "^# $title" "$BRAIN_DIR" </dev/null)
-if [ -z "$file" ]; then
-    slug=$(printf '%s' "$title" | tr '[:upper:]' '[:lower:]' | tr '[:space:]' '-')
-    file="$dir/$slug.md"
-    printf "# %s" "$title" >"$file"
-    printf '%s' "$file"
-elif [ "$(printf '%s' "$file" | wc -l)" -gt 1 ]; then
-    printf "Ambiguous note" >&2
-    exit 1
-else
-    echo "$file"
-fi
+importas -i title 1
+importas -D . dir 2
+backtick -ED "" file { rg -l "^# ${title}$" . }
+ifelse { test $? -ne 0 } {
+    backtick -E slug {
+        heredoc 0 $title
+        pipeline { tr [:upper:] [:lower:] }
+        tr [:space:] -
+    }
+    define newfile "${dir}/${slug}.md"
+    foreground { printf %s $newfile }
+    foreground { redirfd -w 1 $newfile printf "# %s\\n" $title }
+    printf %s $newfile
+} ifelse { heredoc 0 $file backtick -E n { wc -l } test $n -gt 1 } {
+    fdmove 2 1 printf "Ambiguous note"
+}
+printf %s $file

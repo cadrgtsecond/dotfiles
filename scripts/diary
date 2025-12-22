@@ -1,2 +1,0 @@
-#!/bin/sh
-"$EDITOR" "$(locate-note "$(date -I)" "$BRAIN_DIR/journals")"
