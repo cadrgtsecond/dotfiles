@@ -1,4 +1,0 @@
-#!/bin/sh
-mkfifo "$SPAWND_FIFO" || true
-printf %s "$HOME" >"$SPAWND_FIFO"
-exec spawnd

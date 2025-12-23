@@ -2,4 +2,4 @@
 newdir=${1:-$PWD}
 printf '%s\n' "$newdir"
 printf '%s' "$newdir" >"${XDG_RUNTIME_DIR}/spawnpwd"
-spawnc execline-cd "$newdir" spawnd
+execc execline-cd "$newdir" execd

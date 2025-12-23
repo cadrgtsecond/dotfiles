@@ -45,6 +45,7 @@ for i in $(seq 1 9); do
     riverctl map normal Super+Control "$i" toggle-focused-tags "$tags"
     riverctl map normal Super+Shift+Control "$i" toggle-view-tags "$tags"
 done
+riverctl map normal Super P focus-previous-tags
 
 all_tags=$(((1 << 32) - 1))
 riverctl map normal Super 0 set-focused-tags "$all_tags"

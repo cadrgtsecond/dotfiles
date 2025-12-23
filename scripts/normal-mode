@@ -33,7 +33,7 @@ kak -l | xargs -I{} kak -c {} -e kill!	kQ
 # Notes
 wtype "$(date -I)"	d
 term kak "$(locate-note "$(date -I)" ./journals)"	D
-term kak "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" . | sort | bemenu -il 20)")"	n
+term kak "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu -il 20)")"	n
 
 # Packages
 apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzf --preview 'apk info {} | fmt -w $(tput cols)' | wl-copy	pr
@@ -44,7 +44,7 @@ fterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
 # Open
 spawn firefox	of
 spawn foot	ot
-spawn firefox -P "Abhinav Krishna"	ou
+surf -c ~/.local/share/surf/discord.txt https://discord.com/app	od
 spawn fterm alsamixer	oa
 
 # Goto

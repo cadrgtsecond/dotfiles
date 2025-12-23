@@ -1,0 +1,4 @@
+#!/bin/sh
+mkfifo "$SPAWND_FIFO" || true
+changepwd "$HOME" &
+exec execd
