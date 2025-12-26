@@ -1,22 +1,3 @@
-define-command -docstring 'Enable lsp' enable-lsp %{
-    eval %sh{ kak-lsp }
-    set-option window lsp_language_id %opt{filetype}
-    lsp-enable-window
-
-    # Disable LSP Completion
-    set-option window completers 'filename' 'word=all'
-
-    # Disable clutter
-    lsp-diagnostic-lines-disable window
-    lsp-inline-diagnostics-disable window
-
-    map -docstring 'Enter LSP Mode' window user <space> ': enter-user-mode lsp<ret>'
-    map window goto d <esc>:lsp-definition<ret> -docstring 'LSP definition'
-    map window goto r <esc>:lsp-references<ret> -docstring 'LSP references'
-    map window goto y <esc>:lsp-type-definition<ret> -docstring 'LSP type definition'
-    map window insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
-}
-
 define-command -docstring 'Toggle UI elements' -params 1.. \
 toggle-highlighter %{
     try %{
@@ -59,3 +40,36 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
 # Search functions shouldn't flash the screen
 map global normal / ": set-register / ''<ret>/"
 map global normal <a-/> ": set-register / ''<ret><a-/>"
+
+# Xiki
+define-command xiki -override %{
+    evaluate-commands -save-regs wca^| -draft %{
+        try %{
+            execute-keys -draft 's\A +<ret>"wy'
+        } catch %{
+            set-register w ''
+        }
+        try %{
+            execute-keys -draft 'h/(?S)(\n<c-r>w  .*)*$<ret>_xd'
+        } catch %{
+            evaluate-commands -draft %sh{
+                w="$kak_reg_w"
+                printf 'execute-keys %%@x_"cy@\n'
+                printf 'set-register a %%reg{c}\n'
+                while test -n "$w"; do
+                    w="${w#'  '}"
+                    printf 'execute-keys %%@<a-/>^%s(?=[^ ])<ret>@\n' "$w"
+                    printf 'execute-keys %%@x_"cy@\n'
+                    printf 'set-register a %%reg{c} %%reg{a}\n'
+                done
+            }
+            set-register c %sh{
+                eval set -- "$kak_quoted_reg_a"
+                xiki "$@" | sed "s/^/  $kak_reg_w/"
+                printf '\n'
+            }
+            execute-keys -draft '"cp'
+        }
+    }
+}
+map global normal <ret> 'x: xiki<ret>'

@@ -1,0 +1,15 @@
+#!/bin/execlineb
+elgetpositionals -P 2
+ifelse { test -d $1 } {
+    ifelse { test -z $2 } {
+        ls -p $1
+    }
+    execline-cd $1
+    shift
+    backtick -E new_args { dollarat -d "" }
+    define -sd "" new_args_split $new_args
+    xiki $new_args_split
+} ifelse { test -f $1 } {
+    term kak $1
+}
+sh -c $1
