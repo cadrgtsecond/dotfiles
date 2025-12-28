@@ -1,14 +1,23 @@
 #!/bin/execlineb
 elgetpositionals -P 2
+case $1 {
+    "~" {
+        importas -iS HOME
+        ifelse { test -z $2 } {
+            ls -p $HOME
+        }
+        execline-cd $HOME
+        shift pipeline { dollarat -0 } xargs -0 xiki
+    }
+}
 ifelse { test -d $1 } {
     ifelse { test -z $2 } {
         ls -p $1
     }
     execline-cd $1
-    shift
-    backtick -E new_args { dollarat -d "" }
-    define -sd "" new_args_split $new_args
-    xiki $new_args_split
+    shift pipeline { dollarat -0 } xargs -0 xiki
+} ifelse { test -n $2 } {
+    shift pipeline { dollarat -0 } xargs -0 xiki
 } ifelse { test -f $1 } {
     term kak $1
 }
