@@ -1,0 +1,1 @@
+/home/god/programs/miik/rc/miik.kak

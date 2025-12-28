@@ -1,0 +1,1 @@
+/usr/share/kak/rc/tools/doc.kak

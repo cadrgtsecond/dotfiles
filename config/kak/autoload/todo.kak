@@ -1,5 +1,4 @@
 # todo.txt highlighting
-# Partially borrowed from https://github.com/nkoehring/kakoune-todo.txt/blob/master/todotxt.kak
 hook global WinCreate .*todo\.txt %{
     set-option window filetype todotxt
 }

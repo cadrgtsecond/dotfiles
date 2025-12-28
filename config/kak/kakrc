@@ -15,9 +15,13 @@ toggle-option %{
         set-option %arg{1} %arg{2} ''
     }
 }
-
-map -docstring 'Run some useful commands' global user c \
-': evaluate-commands %sh{ cat "$kak_config/commands.kak" | bemenu -l 20; }<ret>'
+declare-user-mode decoration
+map -docstring "modeline" global decoration m %{: toggle-option window modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}} - %val{client}@[%val{session}]'<ret>}
+map -docstring "line numbers" global decoration n %{: toggle-highlighter window/nl number-lines<ret>}
+map -docstring "relative line numbers" global decoration N %{: toggle-highlighter window/nlr number-lines -relative<ret>}
+map -docstring "80 column" global decoration c %{: toggle-highlighter window/col column 80 ,bright-black@WrapMarker<ret>}
+map -docstring "120 column" global decoration C %{: toggle-highlighter window/col column 120 ,bright-black@WrapMarker<ret>}
+map -docstring "decoration mode" global user v ': enter-user-mode decoration<ret>'
 
 set-option global indentwidth 4
 define-command -docstring 'Rename the current session to given name, and try to daemonize them' -params 1 \
@@ -33,43 +37,10 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell|m
 }
 
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
-    parinfer-enable-window
+    source "%val{config}/rc/parinfer.kak"
     map -docstring 'Toggle parinfer mode' window user p ': parinfer-toggle-mode<ret>'
 }
 
 # Search functions shouldn't flash the screen
 map global normal / ": set-register / ''<ret>/"
 map global normal <a-/> ": set-register / ''<ret><a-/>"
-
-# Xiki
-define-command xiki -override %{
-    evaluate-commands -save-regs wca^| -draft %{
-        try %{
-            execute-keys -draft 's\A +<ret>"wy'
-        } catch %{
-            set-register w ''
-        }
-        try %{
-            execute-keys -draft 'h/(?S)(\n<c-r>w  .*)*$<ret>_xd'
-        } catch %{
-            evaluate-commands -draft %sh{
-                w="$kak_reg_w"
-                printf 'execute-keys %%@x_"cy@\n'
-                printf 'set-register a %%reg{c}\n'
-                while test -n "$w"; do
-                    w="${w#'  '}"
-                    printf 'execute-keys %%@<a-/>^%s(?=[^ ])<ret>@\n' "$w"
-                    printf 'execute-keys %%@x_"cy@\n'
-                    printf 'set-register a %%reg{c} %%reg{a}\n'
-                done
-            }
-            set-register c %sh{
-                eval set -- "$kak_quoted_reg_a"
-                xiki "$@" | sed "s/^/  $kak_reg_w/"
-                printf '\n'
-            }
-            execute-keys -draft '"cp'
-        }
-    }
-}
-map global normal <ret> 'x: xiki<ret>'

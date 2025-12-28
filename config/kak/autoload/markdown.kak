@@ -1,5 +1,18 @@
 hook global WinSetOption filetype=(markdown) %{
-    require-module markdown-custom
+    declare-option completions markdown_completions
+    declare-option str-list markdown_headings
+
+    # I don't like having `-`s automatically inserted for lists, since
+    # I often use multi line list elements like an outliner
+    define-command -hidden markdown-my-insert-on-new-line %{
+        try %{ execute-keys -draft -itersel k x s ^\h*\K((>\h*)+)\h* <ret> y gh j P }
+    }
+
+    define-command markdown-open-link %{
+        execute-keys "<a-t>[t]"
+        edit %sh{ locate-note "$kak_selection" }
+    }
+
     add-highlighter window/ wrap
 
     map window normal "<ret>" ": try markdown-open-link<ret>"
@@ -26,20 +39,4 @@ hook global WinSetOption filetype=(markdown) %{
     set-option window completers 'option=markdown_completions' 'filename'
     # I like specific times in my journals and markdown files
     add-highlighter window/time regex '\d\d:\d\d(:\d\d)?(?!\])' 0:keyword
-}
-
-provide-module markdown-custom %{
-    declare-option completions markdown_completions
-    declare-option str-list markdown_headings
-
-    # I don't like having `-`s automatically inserted for lists, since
-    # I often use multi line list elements like an outliner
-    define-command -hidden markdown-my-insert-on-new-line %{
-        try %{ execute-keys -draft -itersel k x s ^\h*\K((>\h*)+)\h* <ret> y gh j P }
-    }
-
-    define-command markdown-open-link %{
-        execute-keys "<a-t>[t]"
-        edit %sh{ locate-note "$kak_selection" }
-    }
 }

@@ -1,12 +1,12 @@
 # Detection
 # ‾‾‾‾‾‾‾‾‾
 
-hook global BufCreate .*\.bqn %{
-    set-option buffer filetype bqn
+hook global WinCreate .*\.bqn %{
+    set-option window filetype bqn
 
-    set-option buffer matching_pairs ( ) { } [ ] ⟨ ⟩
+    set-option window matching_pairs ( ) { } [ ] ⟨ ⟩
 
-    map buffer insert '\' '<esc>:enter-user-mode bqn<ret>' -docstring 'enter bqn character'
+    map window insert '\' '<esc>:enter-user-mode bqn<ret>' -docstring 'enter bqn character'
 }
 
 # Initialization
@@ -157,7 +157,7 @@ map global bqn '\'     ':exec i\<ret>'
 # ‾‾‾‾‾‾‾‾
 
 # insert BQN symbol by name
-# map e.g. as follows : map buffer insert <c-j> '<esc>:insert-bqn<ret>'
+# map e.g. as follows : map window insert <c-j> '<esc>:insert-bqn<ret>'
 define-command -hidden insert-bqn %{
 prompt command: -menu -shell-script-candidates %{ cat<<EOF
 × \\= Sign Multiply
