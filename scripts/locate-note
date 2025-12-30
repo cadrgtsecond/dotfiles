@@ -1,7 +1,9 @@
 #!/bin/execlineb
 
-importas -i title 1
-importas -D . dir 2
+multisubstitute {
+    importas -i title 1
+    importas -D . dir 2
+}
 backtick -ED "" file { rg -l "^# ${title}$" . }
 ifelse { test $? -ne 0 } {
     backtick -E slug {
@@ -10,7 +12,6 @@ ifelse { test $? -ne 0 } {
         tr [:space:] -
     }
     define newfile "${dir}/${slug}.md"
-    foreground { printf %s $newfile }
     foreground { redirfd -w 1 $newfile printf "# %s\\n" $title }
     printf %s $newfile
 } ifelse { heredoc 0 $file backtick -E n { wc -l } test $n -gt 1 } {

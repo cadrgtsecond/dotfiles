@@ -1,65 +1,64 @@
 #!/usr/bin/env enter-mode
-~/.config/river/init	reload
-riverctl exit	X
-sh -c "$(bemenu < /dev/null)"	e
-tile-mode	t
-printf 'zzz\npoweroff now' | bemenu | xargs term doas 	P
-wl-paste -p | wl-copy	yc
-wl-paste | wtype -	yp
-wl-paste | fpipe vipe | wl-copy	ye
+reload	~/.config/river/init
+X	riverctl exit
+e	sh -c "$(bemenu < /dev/null)"
+t	tile-mode
+P	printf 'zzz\npoweroff now' | bemenu | xargs term doas 
+yc	wl-paste -p | wl-copy
+yp	wl-paste | wtype -
+ye	wl-paste | fpipe vipe | wl-copy
 
-BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-focused-tags 	g
-BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-focused-tags 	G
-BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-view-tags 	v
-BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-view-tags 	V
+g	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-focused-tags 
+G	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-focused-tags 
+v	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-view-tags 
+V	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-view-tags 
 
 # Browser
-surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"	oS
-surf "$(bemenu -p surf -F https:// </dev/null)"	os
+oS	surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"
+os	surf "$(bemenu -p surf -F https:// </dev/null)"
+ow	surf "$(readharp web)"
 
 # Screenshot
-grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"	S
+S	grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"
 
 # Keyboard
-cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-copy -n	ue
-change-keyboard $(bemenu -l 20 <~/.config/keyboards)	us
+ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-copy -n
+us	change-keyboard $(bemenu -l 20 <~/.config/keyboards)
 
 # Kakoune stuff
-fd -t f | fpipe fzf | xargs term kak	K
-term sh -c 'kak -c $(list-kak | bemenu); exec bash'	kk
-printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"	kq
-kak -l | xargs -I{} kak -c {} -e kill!	kQ
+K	fd -t f | fpipe fzf | xargs term kak
+kk	term sh -c 'kak -c $(list-kak | bemenu --auto-select); exec bash'
+kq	printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"
+kQ	kak -l | xargs -I{} kak -c {} -e kill!
 
 # Notes
-wtype "$(date -I)"	d
-term kak "$(locate-note "$(date -I)" ./journals)"	D
-term kak "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu -il 20)")"	n
+d	wtype "$(date -I)"
+D	mosham "$(locate-note "$(date -I)" ./journals)"
+n	term kak "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu -il 20)")"
 
 # Packages
-apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzf --preview 'apk info {} | fmt -w $(tput cols)' | wl-copy	pr
-cat /etc/apk/world | fpipe fzf | wl-copy	pm
-fterm doas sh -c 'while true; do kak /etc/apk/world; apk upgrade && break; printf failure...; read; done; printf done...; read'	pw
-fterm doas sh -c 'apk upgrade -U; printf done...; read'	pu
+pr	apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzf --preview 'apk info {} | fmt -w $(tput cols)' | wl-copy
+pm	cat /etc/apk/world | fpipe fzf | wl-copy
+pw	fterm doas loopwhilex -x 0 foreground ' kak' ' /etc/apk/world' '' apk upgrade
+pu	fterm doas apk upgrade -U
 
 # Open
-spawn firefox	of
-spawn foot	ot
-surf -c ~/.local/share/surf/discord.txt https://discord.com/app	od
-spawn fterm alsamixer	oa
+of	spawn firefox
+ot	spawn foot
+od	surf -c ~/.local/share/surf/discord.txt https://discord.com/app
+ou	firefox -P "Abhinav Krishna"
+oa	spawn fterm alsamixer
 
 # Goto
-fpipe zoxide query -i | xargs changepwd	Z
-printf %s "$PWD" | writeharp dir	J
-changepwd "$(readharp dir)"	j
-printf 'cd %s\n' "$(readharp dir)" | wtype -	c
-printf 'ccd %s\n' "$(readharp dir)" | wtype -	C
+Z	fpipe zoxide query -i | xargs changepwd
+J	printf %s "$PWD" | writeharp dir
+j	changepwd "$(readharp dir)"
+c	printf 'cd %s\n' "$(readharp dir)" | wtype -
+C	printf 'ccd %s\n' "$(readharp dir)" | wtype -
 
 # Web
-wl-paste | writeharp web	W
-wtype "$(readharp web)"	w
+W	wl-paste | writeharp web
+w	wtype "$(readharp web)"
 
 # Theme
-listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'	T
-
-# Cargo
-cargo fmt	lf
+T	listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'

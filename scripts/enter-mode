@@ -1,10 +1,11 @@
 #!/bin/sh
 
-result=$(printf "%s\n%s" "$(cat "$1")" "fterm kak $1	?" |
-    grep -Ev "^#|^$" |
+result=$(printf "%s\n%s" "$(cat "$1")" "?	fterm kak $1" |
+    grep -Ev '^#|^$' |
+    awk '{ printf("🕶:%s\n",$0) }' |
     shuf |
-    bemenu -p "$(basename "$1")" -F "$(printf '\t')" -sl20 --auto-select |
-    cut -f1)
+    bemenu -p "$(basename "$1")" -F "🕶:" -sl20 --auto-select |
+    cut -f2)
 [ -z "$result" ] && exit
 sh -c "$result"
 printf '%s' "$0" | grep -- "-lock$" && exec "$0" "$@"
