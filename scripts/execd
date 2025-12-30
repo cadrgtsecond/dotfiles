@@ -1,5 +1,5 @@
 #!/bin/execlineb -p
-importas -iS SPAWND_FIFO
-backtick -E cmd { cat $SPAWND_FIFO }
+importas -iS EXECD_FIFO
+backtick -E cmd { cat $EXECD_FIFO }
 define -sd "" cmd_split $cmd
 $cmd_split
