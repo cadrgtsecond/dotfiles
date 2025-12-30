@@ -12,7 +12,7 @@ riverctl map normal Super Delete keyboard-layout us
 pgrep -u "$USER" -x s6-svscan || s6-svscan ~/.local/service &
 
 # Window Management
-riverctl map normal Super+Shift Return spawn 'spawn footclient'
+riverctl map normal Super+Shift Return spawn 'spawn footclient -E'
 riverctl map normal Super+Shift T spawn 'spawn foot'
 riverctl map normal Super W close
 

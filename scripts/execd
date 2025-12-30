@@ -1,4 +1,4 @@
-#!/bin/execlineb
+#!/bin/execlineb -p
 importas -iS SPAWND_FIFO
 backtick -E cmd { cat $SPAWND_FIFO }
 define -sd "" cmd_split $cmd
