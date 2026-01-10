@@ -1,8 +1,22 @@
 #!/bin/sh
 
-grep -Ev "^scheme:|^author:" "$1" | tr '[:lower:]' '[:upper:]' | tr -d ' "' | tr ':' '=' >~/.config/theme
+pallette=$(cat "$HOME/.config/themes/$1/pallette")
+
 IFS='
 '
+rm ~/.config/themes/main
+touch ~/.config/themes/main
+cat "$HOME/.config/themes/$1/colors" | grep -Ev '^#' | while read -r color; do
+    [ -z "$color" ] && continue
+    color_name=$(printf %s "$color" | cut -d= -f1)
+    color_value=$(printf %s "$color" | cut -d= -f2)
+    pallette_value=$(printf %s "$pallette" | grep "^$color_value=" | cut -d= -f2)
+
+    # echo "$color" "$color_name" "$color_value" "$pallette_value"
+    [ -z "$pallette_value" ] && echo "Unknown color: $color_value" 1>&2 && continue
+    printf '%s=%s\n' "$color_name" "$pallette_value" >>~/.config/themes/main
+done
+
 kak -clear
 for i in $(kak -l); do
     printf 'source %s' ~/.config/kak/autoload/colorscheme.kak | kak -p "$i"

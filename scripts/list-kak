@@ -1,2 +1,2 @@
 #!/bin/sh
-kak -l | grep -vE '^[0-9]+$' | sort
+kak -l | grep -vE '^[0-9]+( \(dead\))?$' | sort

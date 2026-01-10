@@ -1,13 +1,13 @@
 #!/usr/bin/env enter-mode-lock
 +	riverctl send-layout-cmd rivertile "main-count +1"
 -	riverctl send-layout-cmd rivertile "main-count -1"
-h	riverctl move left 100
-j	riverctl move down 100
-k	riverctl move up 100
-l	riverctl move right 100
-H	riverctl resize horizontal -100
-L	riverctl resize horizontal 100
-J	riverctl resize vertical 100
-K	riverctl resize vertical -100
+h	riverctl move left 50
+j	riverctl move down 50
+k	riverctl move up 50
+l	riverctl move right 50
+H	riverctl resize horizontal -50
+L	riverctl resize horizontal 50
+J	riverctl resize vertical 50
+K	riverctl resize vertical -50
 t	riverctl toggle-float
 f	riverctl toggle-fullscreen

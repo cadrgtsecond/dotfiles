@@ -1,7 +1,7 @@
 #!/usr/bin/env enter-mode
-reload	~/.config/river/init
 X	riverctl exit
-e	sh -c "$(bemenu < /dev/null)"
+e	term sh -c "$(bemenu < /dev/null)"
+E	execc emptyenv -c pipeline ' env' '' pipeline ' fpipe' ' vipe' '' emptyenv -p envfile - execd
 t	tile-mode
 P	printf 'zzz\npoweroff now' | bemenu | xargs term doas 
 yc	wl-paste -p | wl-copy
@@ -26,25 +26,26 @@ ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-c
 us	change-keyboard $(bemenu -l 20 <~/.config/keyboards)
 
 # Kakoune stuff
-K	fd -t f | fpipe fzf | xargs term kak
-kk	term sh -c 'kak -c $(list-kak | bemenu --auto-select); exec bash'
+K	fd -t f | fpipe fzy -l 20 | withstdinas -E x mosham '$x'
+kk	mosham -c $(list-kak | bemenu --auto-select)
 kq	printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"
 kQ	kak -l | xargs -I{} kak -c {} -e kill!
 
 # Notes
 d	wtype "$(date -I)"
 D	mosham "$(locate-note "$(date -I)" ./journals)"
-n	term kak "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu -il 20)")"
+n	mosham "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu -il 20)")"
 
 # Packages
-pr	apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzf --preview 'apk info {} | fmt -w $(tput cols)' | wl-copy
-pm	cat /etc/apk/world | fpipe fzf | wl-copy
+pr	apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzy -l 20 | wl-copy
+pm	cat /etc/apk/world | fpipe fzy | wl-copy
 pw	fterm doas loopwhilex -x 0 foreground ' kak' ' /etc/apk/world' '' apk upgrade
 pu	fterm doas apk upgrade -U
 
 # Open
-of	spawn firefox
-ot	spawn foot
+of	spawn firefox -P "Hardened"
+oF	spawn foot
+ot	term watch transmission-remote -l
 od	surf -c ~/.local/share/surf/discord.txt https://discord.com/app
 ou	firefox -P "Abhinav Krishna"
 oa	spawn fterm alsamixer
@@ -61,4 +62,4 @@ W	wl-paste | writeharp web
 w	wtype "$(readharp web)"
 
 # Theme
-T	listthemes | fpipe fzf -d : --with-nth '{1}' --accept-nth 2 --preview 'switchtheme {2}'
+T	fterm loopwhilex sh -c 'cd ~/.config/themes; fd -t d | fzy | ifne xargs switchtheme'
