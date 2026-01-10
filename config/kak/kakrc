@@ -44,3 +44,16 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
 # Search functions shouldn't flash the screen
 map global normal / ": set-register / ''<ret>/"
 map global normal <a-/> ": set-register / ''<ret><a-/>"
+
+hook global WinSetOption filetype=xiki %{
+    map window normal <ret> 'x<a-:><a-;>: xiki<ret>;'
+    map window normal <a-ret> 'x: xiki-execute -fifo<ret>'
+    source "%val{config}/rc/ansi.kak"
+}
+
+# Scratch buffer should use Xiki!
+hook global WinCreate '\*scratch\*' %{
+    set-option window filetype xiki
+}
+
+set-option -add global ui_options 'mosham_fonts=Input Sans,Manjari' 'mosham_font_size=14'
