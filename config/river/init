@@ -12,7 +12,7 @@ riverctl map normal Super Delete keyboard-layout us
 pgrep -u "$USER" -x s6-svscan || s6-svscan ~/.local/service &
 
 # Window Management
-riverctl map normal Super+Shift Return spawn 'spawn footclient -E'
+riverctl map normal Super+Shift Return spawn 'spawn mosham'
 riverctl map normal Super+Shift T spawn 'spawn foot'
 riverctl map normal Super W close
 
@@ -76,8 +76,8 @@ for mode in normal locked; do
     riverctl map $mode None XF86AudioNext spawn 'playerctl next'
 
     # Control screen backlight brightness with brightnessctl (https://github.com/Hummer12007/brightnessctl)
-    riverctl map $mode None XF86MonBrightnessUp spawn 'doas brightnessctl set +5%'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'doas brightnessctl set -5%'
+    riverctl map $mode None XF86MonBrightnessUp spawn 'brightnessctl set +5%'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
 done
 
 # Set background and border color
