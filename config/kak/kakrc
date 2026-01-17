@@ -56,4 +56,4 @@ hook global WinCreate '\*scratch\*' %{
     set-option window filetype xiki
 }
 
-set-option -add global ui_options 'mosham_fonts=Input Sans,Manjari' 'mosham_font_size=14'
+set-option -add global ui_options 'mosham_fonts=Iosevka,Manjari' 'mosham_font_size=16'
