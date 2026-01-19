@@ -1,3 +1,8 @@
-#!/bin/sh
+#!/bin/execlineb
 
-footclient -a float sh -c 'set_theme & exec "$@"' fterm "$@"
+elgetpositionals
+footclient -a float
+background { set_theme }
+foreground { $@ }
+foreground { printf "----- Done -----\\n" }
+cat

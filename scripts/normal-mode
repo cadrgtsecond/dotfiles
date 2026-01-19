@@ -19,7 +19,7 @@ os	surf "$(bemenu -p surf -F https:// </dev/null)"
 ow	surf "$(readharp web)"
 
 # Screenshot
-S	grim -g "$(slurp)" "$(bemenu -F "$(date -I).png" </dev/null)"
+S	grim -g "$(slurp)" - | wl-copy -t image/png
 
 # Keyboard
 ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-copy -n
@@ -39,7 +39,7 @@ n	mosham "$(locate-note "$(rg -Ir\$1 -g '*.md' "^# (.*)" ./home | sort | bemenu 
 # Packages
 pr	apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzy -l 20 | wl-copy
 pm	cat /etc/apk/world | fpipe fzy | wl-copy
-pw	fterm doas loopwhilex -x 0 foreground ' kak' ' /etc/apk/world' '' apk upgrade
+pw	fterm doas loopwhilex -x 0 foreground ' kak' ' /etc/apk/world' '' apk fix
 pu	fterm doas apk upgrade -U
 
 # Open
@@ -54,8 +54,7 @@ oa	spawn fterm alsamixer
 Z	fpipe zoxide query -i | xargs changepwd
 J	printf %s "$PWD" | writeharp dir
 j	changepwd "$(readharp dir)"
-c	printf 'cd %s\n' "$(readharp dir)" | wtype -
-C	printf 'ccd %s\n' "$(readharp dir)" | wtype -
+c	printf %s "$(readharp dir)" | wtype -
 
 # Web
 W	wl-paste | writeharp web

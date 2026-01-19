@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/execlineb
 
-dir=$(mktemp -d)
+elgetpositionals
+backtick -E dir { mktemp -d }
+if { mkfifo ${dir}/stdin ${dir}/stdout ${dir}/stderr }
 
-mkfifo "$dir/stdin" "$dir/stdout" "$dir/stderr"
-
-footclient -a floatpipe \
-    background ' set_theme' '' \
-    redirfd -r 0 "$dir/stdin" redirfd -w 1 "$dir/stdout" redirfd -w 2 "$dir/stderr" \
-    "$@" &
-
-cat "$dir/stdout" </dev/null &
-cat "$dir/stderr" 1>&2 </dev/null &
-cat >"$dir/stdin"
-wait
+background {
+    footclient -a floatpipe \
+        background { set_theme } \
+        redirfd -r 0 ${dir}/stdin redirfd -w 1 ${dir}/stdout redirfd -w 2 ${dir}/stderr \
+        $@
+}
+background { redirfd -r 0 /dev/null cat ${dir}/stdout }
+background { redirfd -r 0 /dev/null fdmove -c 1 2 cat ${dir}/stderr }
+foreground { redirfd -w 1 ${dir}/stdin cat }
 rm -rf "$dir"
