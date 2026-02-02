@@ -1,4 +1,4 @@
-hook global WinSetOption filetype=(markdown) %{
+hook global WinSetOption filetype=markdown %{
     declare-option completions markdown_completions
     declare-option str-list markdown_headings
 
@@ -10,12 +10,12 @@ hook global WinSetOption filetype=(markdown) %{
 
     define-command markdown-open-link %{
         execute-keys "<a-t>[t]"
-        edit %sh{ locate-note "$kak_selection" }
+        edit %sh{ locate-note "$kak_selection" ./home }
     }
 
     add-highlighter window/ wrap
 
-    map window normal "<ret>" ": try markdown-open-link<ret>"
+    map window normal <ret> ": try markdown-open-link<ret>"
 
     remove-hooks window markdown-insert
     hook window InsertChar \n -group markdown-insert markdown-my-insert-on-new-line
@@ -39,4 +39,7 @@ hook global WinSetOption filetype=(markdown) %{
     set-option window completers 'option=markdown_completions' 'filename'
     # I like specific times in my journals and markdown files
     add-highlighter window/time regex '\d\d:\d\d(:\d\d)?(?!\])' 0:keyword
+
+    # Use a proportional font
+    set-option -add buffer ui_options 'mosham_fonts=Iosevka Aile,Manjari'
 }

@@ -4,6 +4,7 @@ multisubstitute {
     importas -i title 1
     importas -D . dir 2
 }
+if { test -n $title }
 backtick -ED "" file { rg -l "^# ${title}$" . }
 ifelse { test $? -ne 0 } {
     backtick -E slug {
