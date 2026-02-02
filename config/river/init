@@ -3,7 +3,6 @@
 export XDG_CURRENT_DESKTOP=river
 
 # Set the keyboard layout
-# We intend for field splitting to take place
 # shellcheck disable=SC2046
 change-keyboard $(head -n1 ~/.config/keyboards)
 # In case stuff breaks

@@ -1,4 +1,5 @@
+graphite,bqn
+-variant ,mal_poorna graphite,in
+us
 -variant dvorak, us,bqn
 -variant dvorak,mal_poorna us,in
-us
--variant colemak_dh us
