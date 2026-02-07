@@ -16,7 +16,7 @@ V	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸
 # Browser
 oS	surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"
 os	surf "$(bemenu -p surf -F https:// </dev/null)"
-ow	surf "$(readharp web)"
+ow	surf "$(harp web)"
 
 # Screenshot
 S	grim -g "$(slurp)" - | wl-copy -t image/png
@@ -50,15 +50,9 @@ od	surf -c ~/.local/share/surf/discord.txt https://discord.com/app
 ou	firefox -P "Abhinav Krishna"
 oa	spawn fterm alsamixer
 
-# Goto
-Z	fpipe zoxide query -i | xargs changepwd
-J	printf %s "$PWD" | writeharp dir
-j	changepwd "$(readharp dir)"
-c	printf %s "$(readharp dir)" | wtype -
-
-# Web
-W	wl-paste | writeharp web
-w	wtype "$(readharp web)"
+# Harps
+j	changepwd "$(harp dir "$PWD")"
+w	wtype "$(harp web "$(wl-paste)")"
 
 # Theme
 T	fterm loopwhilex sh -c 'cd ~/.config/themes; fd -t d | fzy | ifne xargs switchtheme'

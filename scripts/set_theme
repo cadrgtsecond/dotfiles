@@ -1,0 +1,26 @@
+#!/bin/sh
+while true; do
+    eval "$(sed -E 's@=(..)(..)(..)$@=rgb:\1/\2/\3@' ~/.config/themes/main)"
+    printf "
+\\033]11;$background\\a
+\\033]10;$foreground\\a
+\\033]4;0;$black\\a
+\\033]4;1;$red\\a
+\\033]4;2;$green\\a
+\\033]4;3;$yellow\\a
+\\033]4;4;$blue\\a
+\\033]4;5;$magenta\\a
+\\033]4;6;$cyan\\a
+\\033]4;7;$white\\a
+
+\\033]4;8;$bright_black\\a
+\\033]4;9;$bright_red\\a
+\\033]4;10;$bright_green\\a
+\\033]4;11;$bright_yellow\\a
+\\033]4;12;$bright_blue\\a
+\\033]4;13;$bright_magenta\\a
+\\033]4;14;$bright_cyan\\a
+\\033]4;15;$bright_white\\a
+        " | tr -d "\\n "
+    printf ~/.config/theme | entr -nzp true
+done

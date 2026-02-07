@@ -1,2 +1,0 @@
-#!/bin/sh
-cat >"$(harp "$1" "$(harps | bemenu --auto-select)" "$2")"

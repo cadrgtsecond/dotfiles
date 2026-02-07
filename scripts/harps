@@ -1,2 +1,0 @@
-#!/usr/bin/env BQN
-•Out ⥊∾⟜(@+10)˘ ⥊"aA"+⌜↕26
