@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+rom=$(fd -g "$1.rom" ~/programs/uxn)
+shift
+uxn2 "$rom" "$@"
