@@ -24,7 +24,7 @@ evaluate-commands %sh{
         face global bullet rgb:${bullet}
         face global list rgb:${list}
 
-        face global Default rgb:${foreground},rgba:${background}99
+        face global Default rgb:${foreground},rgba:${background}bf
         face global PrimarySelection rgb:${selection_fg},rgba:${selection_bg}e0
         face global SecondarySelection rgb:${selection_alt_fg},rgb:${selection_alt_bg}
         face global PrimaryCursor rgb:${cursor_fg},rgb:${cursor_bg}

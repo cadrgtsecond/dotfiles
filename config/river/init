@@ -12,8 +12,8 @@ pgrep -u "$USER" -x s6-svscan || s6-svscan ~/.local/service &
 
 # Window Management
 riverctl map normal Super+Shift Return spawn 'spawn mosham'
-riverctl map normal Super+Shift T spawn 'spawn foot'
-riverctl map normal Super W close
+riverctl map normal Super+Shift+Control Return spawn 'spawn foot'
+riverctl map normal Super K close
 
 riverctl map normal Super L focus-view next
 riverctl map normal Super H focus-view previous
@@ -22,29 +22,34 @@ riverctl map normal Super+Shift L swap next
 riverctl map normal Super+Shift H swap previous
 
 riverctl map normal Super Period focus-output next
-riverctl map normal Super Comma focus-output previous
+riverctl map normal Super Hyphen focus-output previous
 
 riverctl map normal Super+Shift Period send-to-output next
-riverctl map normal Super+Shift Comma send-to-output previous
+riverctl map normal Super+Shift Hyphen send-to-output previous
 
 riverctl map normal Super Return zoom
-
-riverctl map normal Super J send-layout-cmd rivertile "main-ratio -0.05"
-riverctl map normal Super K send-layout-cmd rivertile "main-ratio +0.05"
 
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
-# Tags
-for i in $(seq 1 9); do
-    tags=$((1 << (i - 1)))
-    riverctl map normal Super "$i" set-focused-tags "$tags"
-    riverctl map normal Super+Shift "$i" set-view-tags "$tags"
-    riverctl map normal Super+Control "$i" toggle-focused-tags "$tags"
-    riverctl map normal Super+Shift+Control "$i" toggle-view-tags "$tags"
+# 31 Tags
+IFS="
+"
+for i in $(BQN -o '∾(•Fmt¨∘↕∘≠∾¨(@+9)∾¨⊢∾¨(@+10)˙) ¬∘∊⟜"HJKL"⊸/ ∾"1A"+↕¨9‿26'); do
+    IFS="	"
+    #shellcheck disable=SC2086
+    set -- $i
+    tags=$((1 << $1))
+    riverctl map normal Super "$2" set-focused-tags "$tags"
+    riverctl map normal Super+Shift "$2" set-view-tags "$tags"
+    riverctl map normal Super+Control "$2" toggle-focused-tags "$tags"
+    riverctl map normal Super+Shift+Control "$2" toggle-view-tags "$tags"
+    IFS="
+    "
 done
-riverctl map normal Super P focus-previous-tags
+
+riverctl map normal Super Comma focus-previous-tags
 
 all_tags=$(((1 << 32) - 1))
 riverctl map normal Super 0 set-focused-tags "$all_tags"

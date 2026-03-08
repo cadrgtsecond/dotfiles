@@ -1,4 +1,4 @@
 #!/bin/execlineb
-forbacktickx -E file { rg -l "^#!/bin/sh" }
+forbacktickx -E file { rg -g !set_theme -l "^#!/bin/sh" }
 foreground { shellcheck $file }
 shfmt -w -i 4 $file

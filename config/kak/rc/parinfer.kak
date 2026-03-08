@@ -12,7 +12,7 @@ parinfer %{
     evaluate-commands -save-regs '|a' -no-hooks %{
         set-register a %val{selections_desc}
         set-register | %{execlineb -c 'withstdinas -NE a backtick -NE -D $a o { heredoc 0 $a parinfer-rust } printf %s $o'}
-        execute-keys "%%|<ret>"
+        execute-keys -draft '%|<ret>'
         select %reg{a}
     }
 }

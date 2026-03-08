@@ -15,7 +15,7 @@ xkb_symbols "graphite" {
     key <AE09>	{[	 9,	 parenleft	]};
     key <AE10>	{[	 0,	 parenright	]};
     key <AE11>	{[ bracketleft,	 braceleft	]};
-    key <AE12>	{[ bracetright,	 braceright	]};
+    key <AE12>	{[ bracketright, braceright	]};
 
     key <AD01>	{[	 b,	 B		]};
     key <AD02>	{[	 l,	 L		]};
@@ -51,6 +51,6 @@ xkb_symbols "graphite" {
     key <AB06>	{[	 k,	 K		]};
     key <AB07>	{[	 p,	 P		]};
     key <AB08>	{[  period,	 greater	]};
-    key <AB09>	{[    dash,	 apostrophe	]};
-    key <AB10>	{[   slash,	 lesser	]};
+    key <AB09>	{[   minus,	 apostrophe	]};
+    key <AB10>	{[   slash,	 less	]};
 };

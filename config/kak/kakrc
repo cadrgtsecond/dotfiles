@@ -21,6 +21,7 @@ map -docstring "line numbers" global decoration n %{: toggle-highlighter window/
 map -docstring "relative line numbers" global decoration N %{: toggle-highlighter window/nlr number-lines -relative<ret>}
 map -docstring "80 column" global decoration c %{: toggle-highlighter window/col column 80 ,bright-black@WrapMarker<ret>}
 map -docstring "120 column" global decoration C %{: toggle-highlighter window/col column 120 ,bright-black@WrapMarker<ret>}
+map -docstring "wrap" global decoration C %{: toggle-highlighter window/col wrap -width 120}
 map -docstring "decoration mode" global user v ': enter-user-mode decoration<ret>'
 
 set-option global indentwidth 4

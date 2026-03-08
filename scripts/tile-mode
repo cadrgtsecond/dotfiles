@@ -11,3 +11,5 @@ J	riverctl resize vertical 50
 K	riverctl resize vertical -50
 t	riverctl toggle-float
 f	riverctl toggle-fullscreen
+n	riverctl send-layout-cmd rivertile "main-ratio -0.05"
+r	riverctl send-layout-cmd rivertile "main-ratio +0.05"

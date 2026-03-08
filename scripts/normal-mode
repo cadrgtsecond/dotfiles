@@ -1,7 +1,7 @@
 #!/usr/bin/env enter-mode
 X	riverctl exit
 e	term sh -c "$(bemenu < /dev/null)"
-E	execc emptyenv -c pipeline ' env' '' pipeline ' fpipe' ' vipe' '' emptyenv -p envfile - execd
+E	sh -c "$(bemenu < /dev/null)"
 t	tile-mode
 P	printf 'zzz\npoweroff now' | bemenu | xargs footclient doas 
 yc	wl-paste -p | wl-copy
@@ -33,8 +33,6 @@ kQ	kak -l | xargs -I{} kak -c {} -e kill!
 
 # Notes
 d	wtype "$(date -I)"
-D	mosham "$(locate-note "$(date -I)" ./journals)"
-n	mosham "$(locate-note "$(rg -Ir\$1 -t md "^# (.*)" ./home | sort | bemenu -il 20)" ./home)"
 
 # Packages
 pr	apk search | sed 's/-[^-]*-[^-]*$//' | fpipe fzy -l 20 | wl-copy
