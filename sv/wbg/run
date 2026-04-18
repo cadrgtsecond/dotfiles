@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb
+importas -S HOME
+wbg ${HOME}/Pictures/wallpapers/ashen/dark-souls.png
