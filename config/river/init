@@ -11,9 +11,8 @@ riverctl map normal Super Delete keyboard-layout us
 pgrep -u "$USER" -x s6-svscan || s6-svscan ~/.local/service &
 
 # Window Management
-riverctl map normal Super+Shift Return spawn 'spawn mosham'
-riverctl map normal Super+Shift+Control Return spawn 'spawn foot'
-riverctl map normal Super K close
+riverctl map normal Super+Shift Return spawn 'spawn foot'
+riverctl map normal Super W close
 
 riverctl map normal Super L focus-view next
 riverctl map normal Super H focus-view previous
@@ -36,7 +35,7 @@ riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 # 31 Tags
 IFS="
 "
-for i in $(BQN -o '∾(•Fmt¨∘↕∘≠∾¨(@+9)∾¨⊢∾¨(@+10)˙) ¬∘∊⟜"HJKL"⊸/ ∾"1A"+↕¨9‿26'); do
+for i in $(BQN -o '∾(•Fmt¨∘↕∘≠∾¨(@+9)∾¨⊢∾¨(@+10)˙) ¬∘∊⟜"HDWL"⊸/ ∾"1A"+↕¨9‿26'); do
     IFS="	"
     #shellcheck disable=SC2086
     set -- $i
@@ -89,5 +88,6 @@ done
 riverctl set-repeat 50 300
 riverctl focus-follows-cursor always
 riverctl rule-add -app-id 'float*' float
+riverctl rule-add -app-id FLTK float
 riverctl rule-add -app-id "bar" csd
 riverctl default-layout rivertile

@@ -3,20 +3,16 @@ X	riverctl exit
 e	term sh -c "$(bemenu < /dev/null)"
 E	sh -c "$(bemenu < /dev/null)"
 t	tile-mode
-P	printf 'zzz\npoweroff now' | bemenu | xargs footclient doas 
+P	printf 'zzz\npoweroff now\nreboot now' | bemenu | xargs footclient doas 
 yc	wl-paste -p | wl-copy
 yp	wl-paste | wtype -
 ye	wl-paste | fpipe vipe | wl-copy
-
-g	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-focused-tags 
-G	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-focused-tags 
-v	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl set-view-tags 
-V	BQN -o "∾(•Repr¨∘↕∘≠∾¨':'∾¨⊢∾¨@+10˙)∾9‿23↕¨⊸+'1'‿'a'" | bemenu -F: --auto-select | BQN -p '2⋆•ParseFloat⊑¯2⊸↓¨•FLines "/dev/stdin"' | xargs riverctl toggle-view-tags 
 
 # Browser
 oS	surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"
 os	surf "$(bemenu -p surf -F https:// </dev/null)"
 ow	surf "$(harp web)"
+ob	term bluetoothctl
 
 # Screenshot
 S	grim -g "$(slurp)" - | wl-copy -t image/png
@@ -26,8 +22,8 @@ ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-c
 us	change-keyboard $(bemenu -l 20 <~/.config/keyboards)
 
 # Kakoune stuff
-K	fd -t f | fpipe fzy -l 20 | withstdinas -E x mosham '$x'
-kk	mosham -c $(list-kak | bemenu --auto-select)
+K	fd -t f | fpipe fzy -l 20 | withstdinas -E x term kak '$x'
+kk	term kak -c $(list-kak | bemenu --auto-select)
 kq	printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"
 kQ	kak -l | xargs -I{} kak -c {} -e kill!
 
@@ -44,7 +40,6 @@ pu	fterm doas apk upgrade -U
 of	spawn firefox -P "Hardened"
 oF	spawn foot
 ot	term watch transmission-remote -l
-od	surf -c ~/.local/share/surf/discord.txt https://discord.com/app
 ou	firefox -P "Abhinav Krishna"
 oa	spawn fterm alsamixer
 
