@@ -1,2 +1,2 @@
-#!/bin/sh
-exec transmission-daemon -f
+#!/bin/execlineb
+transmission-daemon -f

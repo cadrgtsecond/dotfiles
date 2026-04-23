@@ -1,2 +1,2 @@
-#!/bin/sh
-exec rivertile -view-padding 10 -outer-padding 5
+#!/bin/execlineb
+rivertile -view-padding 10 -outer-padding 5

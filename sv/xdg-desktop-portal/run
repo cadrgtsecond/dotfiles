@@ -1,2 +1,2 @@
-#!/bin/sh
-exec /usr/libexec/xdg-desktop-portal -r
+#!/bin/execlineb
+/usr/libexec/xdg-desktop-portal -r

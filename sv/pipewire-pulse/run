@@ -1,2 +1,2 @@
-#!/bin/sh
-exec pipewire-pulse
+#!/bin/execlineb
+pipewire-pulse
