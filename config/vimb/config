@@ -1,0 +1,7 @@
+set webgl=on
+set editor-command=footclient kak '%s'
+set font-size=16
+set dark-mode=true
+set show-titlebar=false
+
+nmap i <C-z>

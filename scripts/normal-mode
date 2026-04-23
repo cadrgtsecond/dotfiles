@@ -8,12 +8,6 @@ yc	wl-paste -p | wl-copy
 yp	wl-paste | wtype -
 ye	wl-paste | fpipe vipe | wl-copy
 
-# Browser
-oS	surf "https://duckduckgo.com/?q=$(bemenu -p search </dev/null | jq -sRr @uri)"
-os	surf "$(bemenu -p surf -F https:// </dev/null)"
-ow	surf "$(harp web)"
-ob	term bluetoothctl
-
 # Screenshot
 S	grim -g "$(slurp)" - | wl-copy -t image/png
 
@@ -37,14 +31,18 @@ pw	fterm doas loopwhilex -x 0 foreground ' kak' ' /etc/apk/world' '' apk fix
 pu	fterm doas apk upgrade -U
 
 # Open
-of	spawn firefox -P "Hardened"
+ob	term bluetoothctl
 oF	spawn foot
 ot	term watch transmission-remote -l
 ou	firefox -P "Abhinav Krishna"
+oj	firefox -P "JEE"
+od	vimb -p discord https://discord.com/app
 oa	spawn fterm alsamixer
+os	vimb -i
 
 # Harps
 j	changepwd "$(harp dir "$PWD")"
+ow	vimb -i "$(harp web "$(wl-paste)")"
 w	wtype "$(harp web "$(wl-paste)")"
 
 # Theme
