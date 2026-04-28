@@ -28,11 +28,7 @@ bar:
                   string:
                     text: ""
 
-          - string: {text: " {capacity}% {state} {estimate} left |", right-margin: 10}
-    - pipewire:
-        content:
-          # TODO: Change icon based on percentage
-          - string: {text: " {linear_volume}%", right-margin: 10}
+          - string: {text: " {capacity}% {state} {estimate} left", right-margin: 10}
   center:
     - clock:
         time-format: "%Y-%m-%d %H:%M:%S"

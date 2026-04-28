@@ -36,7 +36,7 @@ oF	spawn foot
 ot	term watch transmission-remote -l
 ou	firefox -P "Abhinav Krishna"
 oj	firefox -P "JEE"
-od	vimb -p discord https://discord.com/app
+od	firefox -P "Abhinav Krishna" https://discord.com/app
 oa	spawn fterm alsamixer
 os	vimb -i
 

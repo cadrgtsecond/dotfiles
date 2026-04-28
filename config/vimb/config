@@ -1,7 +1,11 @@
-set webgl=on
-set editor-command=footclient kak '%s'
+set editor-command=footclient kak %s
 set font-size=16
 set dark-mode=true
 set show-titlebar=false
 
 nmap i <C-z>
+
+
+# Open youtube videos with middle click
+au LoadStarting https://www.youtube.com/watch* shellcmd! mpv $VIMB_URI
+au LoadStarting https://www.youtube.com/watch* quit

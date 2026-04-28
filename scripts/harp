@@ -32,7 +32,8 @@ while true; do
             target="$(harp_local)/$sel"
         fi
         [ -z "$setval" ] && rm "$target" || printf %s "$setval" >"$target"
-        exit 2
+        printf %s "$setval"
+        exit
         ;;
     ,)
         [ "$relativity" = global ] && relativity=local || relativity=global
