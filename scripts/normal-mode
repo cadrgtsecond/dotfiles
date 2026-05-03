@@ -16,7 +16,7 @@ ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-c
 us	change-keyboard $(bemenu -l 20 <~/.config/keyboards)
 
 # Kakoune stuff
-K	fd -t f | fpipe fzy -l 20 | withstdinas -E x term kak '$x'
+K	fd -t f | sort -r | fpipe fzy -l 20 | withstdinas -E x term kak '$x'
 kk	term kak -c $(list-kak | bemenu --auto-select)
 kq	printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"
 kQ	kak -l | xargs -I{} kak -c {} -e kill!
@@ -36,7 +36,8 @@ oF	spawn foot
 ot	term watch transmission-remote -l
 ou	firefox -P "Abhinav Krishna"
 oj	firefox -P "JEE"
-od	firefox -P "Abhinav Krishna" https://discord.com/app
+od	vimb -p discord  https://discord.com/app
+oy	firefox https://youtube.com
 oa	spawn fterm alsamixer
 os	vimb -i
 
@@ -46,4 +47,4 @@ ow	vimb -i "$(harp web "$(wl-paste)")"
 w	wtype "$(harp web "$(wl-paste)")"
 
 # Theme
-T	fterm loopwhilex sh -c 'cd ~/.config/themes; fd -t d | fzy | ifne xargs switchtheme'
+T	fterm loopwhilex sh -c 'ls ~/.config/themes/*.h | grep -v current-theme.h | fzy | ifne xargs switchtheme'
