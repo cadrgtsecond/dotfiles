@@ -1,3 +1,3 @@
-redo-ifchange style.h ../../themes/current-theme.h
+redo-ifchange style.js.h ../../themes/current-theme.h
 
-preprocess -I ../../themes style.h
+preprocess -I ../../themes style.js.h

@@ -7,7 +7,7 @@
     "LayoutBoxFgColor": "#"@BACKGROUND_3@"",
     "LayoutBoxBgColor": "#"@BACKGROUND_1@"",
     "LayoutBoxUnsavedBgColor": "#"@WARNING@"",
-    "ScrollFgColor": "#"@BACKGROUND_2@"",
+    "ScrollFgColor": "#"@BACKGROUND_1@"",
     "ScrollBgColor": "#"@BACKGROUND_2@"",
     "WinBorderColor": "#"@BACKGROUND_1@"",
     "PrimarySelectionFgColor": "#"@PRIMARY_SELECTION_FOREGROUND@"",
@@ -28,5 +28,6 @@
         "SubheadingColor":   "#"@HEADING@"",
         "InsertedColor":     "#"@GREEN@"",
         "DeletedColor":      "#"@RED@""
-    }
+    },
+    "CursorProg": "color(180, 180, 180, 255);begin;line(2,0);line(0,lh);line(-2,0);line(0,-lh);close"
 }
