@@ -1,0 +1,73 @@
+// Palette
+#define NORD0  2e3440
+#define NORD1  3b4252
+#define NORD2  434c5e
+#define NORD3  4c566a
+#define NORD4  d8dee9
+#define NORD5  e5e9f0
+#define NORD6  eceff4
+#define NORD7  8fbcbb
+#define NORD8  88c0d0
+#define NORD9  81a1c1
+#define NORD10 5e81ac
+#define NORD11 bf616a
+#define NORD12 d08770
+#define NORD13 ebcb8b
+#define NORD14 a3be8c
+#define NORD15 b48ead
+
+// Basics
+#define FOREGROUND_1 NORD6
+#define FOREGROUND_2 NORD4
+#define FOREGROUND_3 NORD5
+
+#define BACKGROUND_1 NORD0
+#define BACKGROUND_2 NORD1
+#define BACKGROUND_3 NORD2
+
+// 16 colors
+#define BLACK   NORD0
+#define RED     NORD11
+#define GREEN   NORD14
+#define YELLOW  NORD13
+#define BLUE    NORD9
+#define MAGENTA NORD15
+#define CYAN    NORD8
+#define WHITE   NORD6
+
+#define BRIGHT_BLACK   NORD3
+#define BRIGHT_RED     NORD11
+#define BRIGHT_GREEN   NORD14
+#define BRIGHT_YELLOW  NORD13
+#define BRIGHT_BLUE    NORD9
+#define BRIGHT_MAGENTA NORD15
+#define BRIGHT_CYAN    NORD7
+#define BRIGHT_WHITE   NORD6
+
+// Syntax highlighting
+#define KEYWORD NORD9
+#define TYPE NORD7
+#define VARIABLE NORD4
+#define FUNCTION NORD8
+#define BUILTIN NORD7
+#define STRING NORD14
+#define NUMBER NORD15
+#define OPERATOR NORD9
+#define COMMENT NORD3
+#define HEADING NORD8
+#define MATCHING_DELIMITER NORD9
+#define WHITESPACE NORD3
+#define MONOSPACE_BACKGROUND NORD1
+#define METAPROGRAMMING NORD10
+
+// UI Elements
+#define PRIMARY_SELECTION_FOREGROUND NORD4
+#define PRIMARY_SELECTION_BACKGROUND NORD2
+#define PRIMARY_CURSOR_BACKGROUND NORD5
+#define SECONDARY_SELECTION_FOREGROUND NORD4
+#define SECONDARY_SELECTION_BACKGROUND NORD2
+#define SECONDARY_CURSOR_BACKGROUND NORD4
+
+// Warnings and Errors
+#define WARNING YELLOW
+#define ERROR RED

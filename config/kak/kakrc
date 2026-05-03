@@ -24,7 +24,6 @@ map -docstring "120 column" global decoration C %{: toggle-highlighter window/co
 map -docstring "wrap" global decoration C %{: toggle-highlighter window/col wrap -width 120<ret>}
 map -docstring "decoration mode" global user v ': enter-user-mode decoration<ret>'
 
-set-option global indentwidth 4
 define-command -docstring 'Rename the current session to given name, and try to daemonize them' -params 1 \
 try-daemonize %{
     try %{ daemonize-session }
@@ -40,6 +39,10 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell) 
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     source "%val{config}/rc/parinfer.kak"
     map -docstring 'Toggle parinfer mode' window user p ': parinfer-toggle-mode<ret>'
+}
+
+hook global WinCreate '.*\.do' %{
+    set-option window filetype sh
 }
 
 # Search functions shouldn't flash the screen
@@ -58,3 +61,9 @@ hook global WinCreate '\*scratch\*' %{
 }
 
 set-option -add global ui_options 'mosham_fonts=Iosevka,Manjari,Noto Sans Arabic' 'mosham_font_size=16'
+
+# Macro harp
+define-command macro-harp %{
+    set-register arobase %sh{ harp macro "$kak_reg_arobase" "$kak_opt_filetype"  }
+}
+map global normal <quote> ': macro-harp<ret>'

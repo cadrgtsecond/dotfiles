@@ -1,0 +1,6 @@
+#!/bin/execlineb
+# A very tiny wrapper around cc(1) to only use the preprocessor
+elgetpositionals -P 1
+pipeline { cc -E -nostdinc $@ }
+pipeline { grep -Ev ^#|^$ }
+sed "s/\"@//g;s/@\"//g;s/@ //g;s/ @//g;s/@@//g;s/@//g"
