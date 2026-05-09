@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo /usr/libexec/showmethekey-cli | /usr/libexec/showmethekey-gtk 

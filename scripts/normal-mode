@@ -16,8 +16,8 @@ ue	cat ~/.local/bin/scripts/unicode_list.csv | bemenu -l 20 | cut -d, -f1 | wl-c
 us	change-keyboard $(bemenu -l 20 <~/.config/keyboards)
 
 # Kakoune stuff
-K	fd -t f | sort -r | fpipe fzy -l 20 | withstdinas -E x term kak '$x'
-kk	term kak -c $(list-kak | bemenu --auto-select)
+K	fd -t f | sort -r | fpipe fzy -l 20 | withstdinas -E x footclient kak '$x'
+kk	footclient kak -c $(list-kak | bemenu --auto-select)
 kq	printf 'kill!' | kak -p "$(kak -l | bemenu -p "kill")"
 kQ	kak -l | xargs -I{} kak -c {} -e kill!
 
@@ -32,6 +32,7 @@ pu	fterm doas apk upgrade -U
 
 # Open
 ob	term bluetoothctl
+om	mpv "$(wl-paste -n)"
 oF	spawn foot
 ot	term watch transmission-remote -l
 ou	firefox -P "Abhinav Krishna"

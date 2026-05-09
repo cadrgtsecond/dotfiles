@@ -1,4 +1,0 @@
-#!/bin/execlineb
-importas -iS HOME
-elgetpositionals
-lynx -cfg=${HOME}/.config/lynx/lynx.cfg "$@"

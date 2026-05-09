@@ -22,7 +22,7 @@ xkb_symbols "graphite" {
     key <AD03>	{[	 d,	 D		]};
     key <AD04>	{[	 w,	 W		]};
     key <AD05>	{[	 z,	 Z		]};
-    key <AD06>	{[ quotedbl,	 underscore	]};
+    key <AD06>	{[ apostrophe,	 underscore	]};
     key <AD07>	{[	 f,	 F		]};
     key <AD08>	{[	 o,	 O		]};
     key <AD09>	{[	 u,	 U		]};
@@ -51,6 +51,6 @@ xkb_symbols "graphite" {
     key <AB06>	{[	 k,	 K		]};
     key <AB07>	{[	 p,	 P		]};
     key <AB08>	{[  period,	 greater	]};
-    key <AB09>	{[   minus,	 apostrophe	]};
+    key <AB09>	{[   minus,	 quotedbl	]};
     key <AB10>	{[   slash,	 less	]};
 };
