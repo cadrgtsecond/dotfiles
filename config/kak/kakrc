@@ -35,6 +35,9 @@ hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme|haskell) 
     set window indentwidth 2
     map window insert <tab> <space><space>
 }
+hook global WinSetOption filetype=c %{
+    set window indentwidth 0
+}
 
 hook global WinSetOption filetype=(clojure|lisp|picolisp|racket|scheme) %{
     source "%val{config}/rc/parinfer.kak"
@@ -48,6 +51,14 @@ hook global WinCreate '.*\.do' %{
 # Search functions shouldn't flash the screen
 map global normal / ": set-register / ''<ret>/"
 map global normal <a-/> ": set-register / ''<ret><a-/>"
+# t and friends should behave differently
+map global normal t ': on-key %{ execute-keys "lt%val{key};" }<ret>'
+map global normal f ': on-key %{ execute-keys "f%val{key};" }<ret>'
+map global normal <a-t> ': on-key %{ execute-keys "h<a-t>%val{key};" }<ret>'
+map global normal <a-f> ': on-key %{ execute-keys "<a-f>%val{key};" }<ret>'
+
+map global normal T ': on-key %{ execute-keys "LT%val{key};" }<ret>'
+map global normal <a-T> ': on-key %{ execute-keys "H<a-T>%val{key};" }<ret>'
 
 hook global WinSetOption filetype=xiki %{
     map window normal <ret> 'x<a-:><a-;>: xiki<ret>;'
@@ -67,3 +78,7 @@ define-command macro-harp %{
     set-register arobase %sh{ harp macro "$kak_reg_arobase" "$kak_opt_filetype"  }
 }
 map global normal <quote> ': macro-harp<ret>'
+
+# Clipboard
+map -docstring "Copy external" global user y '<a-|>wl-copy<ret>'
+map -docstring "Paste external"  global user p '<a-!>wl-paste -n<ret>'
